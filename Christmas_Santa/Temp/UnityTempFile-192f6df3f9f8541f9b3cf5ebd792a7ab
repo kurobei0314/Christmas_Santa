@@ -290,4 +290,11 @@
 /define:ENABLE_TIMELINE
 /define:CSHARP_7_OR_LATER
 /define:CSHARP_7_3_OR_NEWER
-"Assets/NewBehaviourScript.cs"
+"Assets/Script/AudioManager.cs"
+"Assets/Script/Constant.cs"
+"Assets/Script/GameController.cs"
+"Assets/Script/item.cs"
+"Assets/Script/ResultController.cs"
+"Assets/Script/santa.cs"
+"Assets/Script/ScoreManager.cs"
+"Assets/Script/TitleController.cs"

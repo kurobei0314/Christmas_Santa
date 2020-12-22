@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <CscToolPath>/Applications/Unity/Unity.app/Contents/Tools/RoslynScripts</CscToolPath>
+    <CscToolExe>unity_csc.sh</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,7 +55,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Script\AudioManager.cs" />
+     <Compile Include="Assets\Script\Constant.cs" />
+     <Compile Include="Assets\Script\GameController.cs" />
+     <Compile Include="Assets\Script\item.cs" />
+     <Compile Include="Assets\Script\ResultController.cs" />
+     <Compile Include="Assets\Script\santa.cs" />
+     <Compile Include="Assets\Script\ScoreManager.cs" />
+     <Compile Include="Assets\Script\TitleController.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/uchidamai/Unity/Christmas_Santa/Christmas_Santa/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

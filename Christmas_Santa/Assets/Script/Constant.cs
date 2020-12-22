@@ -12,7 +12,7 @@ public static class GameInfo{
     public static readonly float GRAVITY = 0.1f;   
 
     //プレイヤーの初期速度
-    public static readonly float INITIAL_SPEED = 2.0f;
+    public static readonly float INITIAL_SPEED = 0.1f;
 
 
     

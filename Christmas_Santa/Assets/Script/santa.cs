@@ -62,6 +62,7 @@ public class santa : MonoBehaviour
             }
     }
     
+    /*
     void OnCollisionStay2D(Collision2D col)
     {
         //Debug.Log("Stay");
@@ -71,6 +72,7 @@ public class santa : MonoBehaviour
                 SetCurrentPlayerState(PlayerState.FALL);
             }
     }
+    */
     
     
     void OnCollisionExit2D(Collision2D col)
@@ -81,6 +83,7 @@ public class santa : MonoBehaviour
                 SetCurrentPlayerState(PlayerState.JUMP);
             }
     }
+    
     
 
     // プレイヤーの状態を変える

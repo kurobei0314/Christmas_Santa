@@ -55,8 +55,10 @@ public class GameController : MonoBehaviour
     //画面をクリックした時の処理
     void Click_touchpanel(){
 
-        rigidbody = player.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(Vector2.up * GameInfo.PLAYER_JUMP);
+        if(player.GetComponent<santa>().LandRoof()){
+            rigidbody = player.GetComponent<Rigidbody2D>();
+            rigidbody.AddForce(Vector2.up * GameInfo.PLAYER_JUMP);
+        }
     }
 
 }

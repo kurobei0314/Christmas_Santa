@@ -6,6 +6,14 @@ public class santa : MonoBehaviour
 {
     //　プレイヤーの横幅、縦幅
     float width, height;
+    float speed=GameInfo.INITIAL_SPEED;
+
+    //プレイヤーの状態を管理する
+    public enum PlayerState{
+        NORMAL,
+        JUMP
+    }
+    public PlayerState currentPlayerState;
 
     // Start is called before the first frame update
     void Awake()
@@ -36,4 +44,42 @@ public class santa : MonoBehaviour
         return UpLeftPosition; 
     }
 
+    //　プレイヤーのスピードを取得する
+    public float Get_PlayerSpeed(){
+        return speed;
+    }
+
+    // 衝突判定
+    void OnCollisionStay(Collision col)
+    {
+            if (col.gameObject.tag == "roof")
+            {
+                
+
+            }
+    }
+
+    // プレイヤーの状態を変える
+    public void ChangeCurrentPlayerState () {
+        switch (currentPlayerState) {
+            case PlayerState.NORMAL:
+                currentPlayerState = PlayerState.JUMP;
+                break;
+            case PlayerState.JUMP:
+                currentPlayerState = PlayerState.NORMAL;
+                break;
+        }
+    }
+
+    //ジャンプしているときにジャンプしないようにする
+    public bool JudgeJump(){
+
+        if(currentPlayerState == PlayerState.NORMAL){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
 }

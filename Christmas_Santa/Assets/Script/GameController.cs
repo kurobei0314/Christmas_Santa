@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject player;
+    public santa player;
     public GameObject touchpanel;
-    [SerializeField] private Camera camera;
+    [SerializeField] Camera camera;
 
-
-     //ゲームの状況を管理する
+    //プレイヤーの状態を管理する
     public enum GameState{
-        COUNT,
+        COUNTDOWN,
         MAIN,
         GAMEOVER
     }
@@ -23,26 +22,40 @@ public class GameController : MonoBehaviour
     void Start()
     {
         touchpanel.GetComponent<Button>().onClick.AddListener (Click_touchpanel);
+        currentGameState = GameState.MAIN;     
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(currentGameState == GameState.MAIN){
-            player.transform.position -= new Vector3(0.0f, GameInfo.GRAVITY,0.0f);
+        if(currentGameState == GameState.MAIN){
+
+            player.transform.position += new Vector3(player.Get_PlayerSpeed(), -GameInfo.GRAVITY,0.0f);
+            //player.transform.position += new Vector3(player.Get_PlayerSpeed(),0.0f,0.0f);
+            camera.transform.position += new Vector3(player.Get_PlayerSpeed(),0.0f,0.0f);
 
             //　プレイヤーが下にいるかどうかを確認する
-            Vector3 PlayerUpLeftPosition = player.GetComponent<santa>().Get_UpLeftPosition();
+            Vector3 PlayerUpLeftPosition = player.Get_UpLeftPosition();
             if(camera.transform.position.y - 7.5f > PlayerUpLeftPosition.y){
                 Debug.Log("wa-i");
                 // currentGameState = GameInfo.GAMEOVER;
             }
-        //}
+        }
     
+    }
+
+    // ゲームの状態を変える
+    public void ChangeCurrentGameState (GameState state) {
+        currentGameState = state;
     }
 
     //画面をクリックした時の処理
     void Click_touchpanel(){
-        player.transform.position += new Vector3 (0.0f,GameInfo.PLAYER_JUMP,0.0f);
+
+        if(player.JudgeJump()){
+            player.transform.position += new Vector3 (0.0f,GameInfo.PLAYER_JUMP,0.0f);
+            player.ChangeCurrentPlayerState ();
+        }
     }
+
 }

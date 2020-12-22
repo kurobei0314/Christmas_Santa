@@ -6,6 +6,7 @@ public class santa : MonoBehaviour
 {
     //　プレイヤーの横幅、縦幅
     float width, height;
+    float speed=GameInfo.INITIAL_SPEED;
 
     // Start is called before the first frame update
     void Awake()
@@ -35,5 +36,11 @@ public class santa : MonoBehaviour
         UpLeftPosition += new Vector3 (width/2, height/2,0);
         return UpLeftPosition; 
     }
+
+    //　プレイヤーのスピードを取得する
+    public float Get_PlayerSpeed(){
+        return speed;
+    }
+
 
 }

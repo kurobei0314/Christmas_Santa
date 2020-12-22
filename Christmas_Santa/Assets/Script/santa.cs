@@ -50,12 +50,11 @@ public class santa : MonoBehaviour
     }
 
     // 衝突判定
-    void OnCollisionStay(Collision col)
+    void OnCollisionStay2D(Collision2D col)
     {
             if (col.gameObject.tag == "roof")
             {
-                
-
+                SetCurrentPlayerState(PlayerState.NORMAL);
             }
     }
 
@@ -66,10 +65,15 @@ public class santa : MonoBehaviour
                 currentPlayerState = PlayerState.JUMP;
                 break;
             case PlayerState.JUMP:
-                currentPlayerState = PlayerState.NORMAL;
                 break;
         }
     }
+
+     // ゲームの状態をセットする
+    public void SetCurrentPlayerState (PlayerState state) {
+        currentPlayerState = state;
+    }
+
 
     //ジャンプしているときにジャンプしないようにする
     public bool JudgeJump(){

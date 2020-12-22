@@ -9,7 +9,10 @@ public class GameController : MonoBehaviour
     public GameObject touchpanel;
     [SerializeField] Camera camera;
 
-    Rigidbody2D rigidbody;    
+    Rigidbody2D rigidbody;
+    GameObject[] HavePresent;
+
+    [SerializeField] GameObject[] PropertyPresent;   
 
     //プレイヤーの状態を管理する
     public enum GameState{
@@ -47,6 +50,18 @@ public class GameController : MonoBehaviour
     
     }
 
+    //持っているプレゼントの初期化
+    void HavePresentInitialize(){
+
+        HavePresent = new GameObject[3];
+
+        for(int i=0; i<3; i++){
+            HavePresent[i] =  PropertyPresent[i];
+        }
+        
+    }
+
+    //　プレイヤーの移動
     public void PlayerControll(){
 
         float PlayerSpeed = player.GetComponent<santa>().Get_PlayerSpeed();

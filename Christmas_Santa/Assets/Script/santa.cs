@@ -15,6 +15,7 @@ public class santa : MonoBehaviour
         FALL
     }
     public PlayerState currentPlayerState;
+    public Property HavePresent;
 
     // Start is called before the first frame update
     void Awake()
@@ -72,6 +73,18 @@ public class santa : MonoBehaviour
             }
     }
     
+    void OnTriggerEnter2D(Collider2D col){
+
+        if(col.gameObject.tag == "red"    ||
+           col.gameObject.tag == "yellow" ||
+           col.gameObject.tag == "blue"   ){
+            
+            col.gameObject.SetActive(false);
+            HavePresent.SetHavePresent(col.gameObject.GetComponent<present>().GetPresentType());
+            //StartCoroutine ("PresentMoveAnimation");
+        }
+
+    }
     
 
     // プレイヤーの状態を変える

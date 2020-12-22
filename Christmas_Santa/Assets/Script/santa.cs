@@ -11,7 +11,8 @@ public class santa : MonoBehaviour
     //プレイヤーの状態を管理する
     public enum PlayerState{
         NORMAL,
-        JUMP
+        JUMP,
+        FALL
     }
     public PlayerState currentPlayerState;
 
@@ -20,12 +21,13 @@ public class santa : MonoBehaviour
     {
        width  = GetComponent<Renderer>().bounds.size.x;
        height = GetComponent<Renderer>().bounds.size.y; 
+       SetCurrentPlayerState (PlayerState.NORMAL);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(currentPlayerState);
     }
 
     //プレイヤーの右下の座標を取得する
@@ -49,14 +51,37 @@ public class santa : MonoBehaviour
         return speed;
     }
 
-    // 衝突判定
-    void OnCollisionStay2D(Collision2D col)
+    // 衝突判定まわり
+    void OnCollisionEnter2D(Collision2D col)
     {
+        //Debug.Log("Enter");
+
             if (col.gameObject.tag == "roof")
             {
                 SetCurrentPlayerState(PlayerState.NORMAL);
             }
     }
+    
+    void OnCollisionStay2D(Collision2D col)
+    {
+        //Debug.Log("Stay");
+
+            if (col.gameObject.tag == "roof")
+            {
+                SetCurrentPlayerState(PlayerState.FALL);
+            }
+    }
+    
+    
+    void OnCollisionExit2D(Collision2D col)
+    {
+        //Debug.Log("Exit");
+            if (col.gameObject.tag == "roof")
+            {
+                SetCurrentPlayerState(PlayerState.JUMP);
+            }
+    }
+    
 
     // プレイヤーの状態を変える
     public void ChangeCurrentPlayerState () {
@@ -75,9 +100,8 @@ public class santa : MonoBehaviour
     }
 
 
-    //ジャンプしているときにジャンプしないようにする
-    public bool JudgeJump(){
-
+    //playerが地面に着いているかどうか判定
+    public bool LandRoof(){
         if(currentPlayerState == PlayerState.NORMAL){
             return true;
         }

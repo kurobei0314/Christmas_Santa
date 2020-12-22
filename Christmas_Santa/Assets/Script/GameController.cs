@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public santa player;
+    public GameObject player;
     public GameObject touchpanel;
     [SerializeField] Camera camera;
+
+    Rigidbody2D rigidbody;    
 
     //プレイヤーの状態を管理する
     public enum GameState{
@@ -22,21 +24,22 @@ public class GameController : MonoBehaviour
     void Start()
     {
         touchpanel.GetComponent<Button>().onClick.AddListener (Click_touchpanel);
-        SetCurrentGameState(GameState.MAIN);     
+        SetCurrentGameState(GameState.MAIN);
+
     }
 
     // Update is called once per frame
     void Update()
     {
         if(currentGameState == GameState.MAIN){
-
-            player.transform.position += new Vector3(player.Get_PlayerSpeed(), -GameInfo.GRAVITY,0.0f);
             
-            //player.transform.position += new Vector3(player.Get_PlayerSpeed(),0.0f,0.0f);
-            camera.transform.position += new Vector3(player.Get_PlayerSpeed(),0.0f,0.0f);
+            float PlayerSpeed = player.GetComponent<santa>().Get_PlayerSpeed();
+            
+            rigidbody = player.GetComponent<Rigidbody2D>();
+            rigidbody.MovePosition( player.transform.position + new Vector3(PlayerSpeed, GameInfo.GRAVITY,0.0f) );
 
             //　プレイヤーが下にいるかどうかを確認する
-            Vector3 PlayerUpLeftPosition = player.Get_UpLeftPosition();
+            Vector3 PlayerUpLeftPosition = player.GetComponent<santa>().Get_UpLeftPosition();
             if(camera.transform.position.y - 7.5f > PlayerUpLeftPosition.y){
                 // SetCurrentGameState(GameState.GAMEOVER);
             }
@@ -52,12 +55,8 @@ public class GameController : MonoBehaviour
     //画面をクリックした時の処理
     void Click_touchpanel(){
 
-        if(player.JudgeJump()){
-            player.transform.position += new Vector3 (0.0f,GameInfo.PLAYER_JUMP,0.0f);
-
-            //player.GetComponent<Rigidbody2D>().AddForce(transform.up * GameInfo.PLAYER_JUMP);
-            player.ChangeCurrentPlayerState ();
-        }
+        rigidbody = player.GetComponent<Rigidbody2D>();
+        rigidbody.AddForce(Vector2.up * GameInfo.PLAYER_JUMP);
     }
 
 }

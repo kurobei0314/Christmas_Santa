@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class santa : MonoBehaviour
 {
+    //　プレイヤーの横幅、縦幅
+    float width, height;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+       width  = GetComponent<Renderer>().bounds.size.x;
+       height = GetComponent<Renderer>().bounds.size.y; 
     }
 
     // Update is called once per frame
@@ -16,5 +20,20 @@ public class santa : MonoBehaviour
         
     }
 
-    
+    //プレイヤーの右下の座標を取得する
+    public Vector3 Get_UnderRightPosition(){
+
+        Vector3 UnderRightPosition = transform.position; 
+        UnderRightPosition -= new Vector3 (width/2, height/2,0);
+        return UnderRightPosition; 
+    }
+
+    //プレイヤーの左上の座標を取得する
+    public Vector3 Get_UpLeftPosition(){
+
+        Vector3 UpLeftPosition = transform.position; 
+        UpLeftPosition += new Vector3 (width/2, height/2,0);
+        return UpLeftPosition; 
+    }
+
 }

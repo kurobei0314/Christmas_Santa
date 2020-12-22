@@ -9,7 +9,10 @@ public class GameController : MonoBehaviour
     public GameObject touchpanel;
     [SerializeField] Camera camera;
 
-    Rigidbody2D rigidbody;    
+    Rigidbody2D rigidbody;
+    GameObject[] HavePresent;
+
+    [SerializeField] GameObject[] PropertyPresent;   
 
     //プレイヤーの状態を管理する
     public enum GameState{
@@ -31,21 +34,49 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentGameState == GameState.MAIN){
-            
-            float PlayerSpeed = player.GetComponent<santa>().Get_PlayerSpeed();
-            
-            rigidbody = player.GetComponent<Rigidbody2D>();
-            rigidbody.MovePosition( player.transform.position + new Vector3(PlayerSpeed, GameInfo.GRAVITY,0.0f) );
+        if     (currentGameState == GameState.COUNTDOWN){
 
-            //　プレイヤーが下にいるかどうかを確認する
-            Vector3 PlayerUpLeftPosition = player.GetComponent<santa>().Get_UpLeftPosition();
-            if(camera.transform.position.y - 7.5f > PlayerUpLeftPosition.y){
-                // SetCurrentGameState(GameState.GAMEOVER);
-            }
         }
+        else if(currentGameState == GameState.MAIN){
+            
+            PlayerControll();
+
+        }
+
+        else if(currentGameState == GameState.GAMEOVER){
+
+        }
+        
     
     }
+
+    //持っているプレゼントの初期化
+    void HavePresentInitialize(){
+
+        HavePresent = new GameObject[3];
+
+        for(int i=0; i<3; i++){
+            HavePresent[i] =  PropertyPresent[i];
+        }
+        
+    }
+
+    //　プレイヤーの移動
+    public void PlayerControll(){
+
+        float PlayerSpeed = player.GetComponent<santa>().Get_PlayerSpeed();
+            
+        rigidbody = player.GetComponent<Rigidbody2D>();
+        rigidbody.MovePosition( player.transform.position + new Vector3(PlayerSpeed, GameInfo.GRAVITY,0.0f) );
+
+        //　プレイヤーが下にいるかどうかを確認する
+        Vector3 PlayerUpLeftPosition = player.GetComponent<santa>().Get_UpLeftPosition();
+        
+        if(camera.transform.position.y - 7.5f > PlayerUpLeftPosition.y){
+            // SetCurrentGameState(GameState.GAMEOVER);
+        }
+    }
+    
 
     // ゲームの状態をセットする
     public void SetCurrentGameState (GameState state) {

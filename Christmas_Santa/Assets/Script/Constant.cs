@@ -13,7 +13,17 @@ public static class GameInfo{
 
     //プレイヤーの初期速度
     public static readonly float INITIAL_SPEED = 0.1f;
-
-
     
+    //プレイヤーの最大プレゼント所持数
+    public static readonly int MAX_HAVEPRESENT = 3;
+}
+
+public static class PresentInfo{
+    public enum Type{
+        RED,
+        BLUE,
+        YELLOW,
+        NONE
+    }
+    public static Type PresentType;
 }

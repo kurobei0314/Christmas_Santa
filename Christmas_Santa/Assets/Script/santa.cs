@@ -62,18 +62,6 @@ public class santa : MonoBehaviour
             }
     }
     
-    /*
-    void OnCollisionStay2D(Collision2D col)
-    {
-        //Debug.Log("Stay");
-
-            if (col.gameObject.tag == "roof")
-            {
-                SetCurrentPlayerState(PlayerState.FALL);
-            }
-    }
-    */
-    
     
     void OnCollisionExit2D(Collision2D col)
     {

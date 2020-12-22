@@ -15,4 +15,4 @@ Unity1 weekゲームジャムのためのゲーム
 
  詰まったこと
  - transform.positionで移動をしたところ、動きがガタガタになってしまった。
-    MovePositionを使うにしても、使い方がわからず戸惑ってしまった。
+    MovePositionを使うにしても、使い方がわからず戸惑ってしまった。(やっとaddForceの使い方がわかった気がした)

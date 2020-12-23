@@ -16,6 +16,12 @@ public static class GameInfo{
     
     //プレイヤーの最大プレゼント所持数
     public static readonly int MAX_HAVEPRESENT = 3;
+
+    //コーラによる上昇スピード
+    public static readonly float COLA_SPEED = 3.0f;
+
+    //お茶による減少スピード
+    public static readonly float GREENTEA_SPEED = -3.0f;
 }
 
 public static class PresentInfo{

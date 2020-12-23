@@ -94,15 +94,19 @@ public class santa : MonoBehaviour
             HavePresent.FindHavePresent(col.gameObject.GetComponent<wantperson>().GetWantPresentType());
         }
 
-        //スピード変換アイテムとと触れた時の処理
+        //スピード変換アイテムと触れた時の処理
         if(col.gameObject.tag == "Item"){
 
             col.gameObject.SetActive(false);
             ChangePlayerSpeed(col.gameObject.GetComponent<item>().ChangeSantaSpeedAmount());
         }
 
+        //敵と触れた時の処理
+        if(col.gameObject.tag == "Enemy"){
 
-
+            col.gameObject.SetActive(false);
+            TouchEnemy(col.gameObject.GetComponent<enemy>().GetEnemyType());
+        }
     }
     
 
@@ -137,4 +141,17 @@ public class santa : MonoBehaviour
         speed += ChangeSpeed;
     }
     
+    void TouchEnemy(EnemyInfo.Types type){
+
+        switch(type){
+
+            case EnemyInfo.Types.BIRD:
+                Debug.Log("bird");
+                break;
+
+            case EnemyInfo.Types.STONE:
+                Debug.Log("Stone");
+                break;
+        }
+    }
 }

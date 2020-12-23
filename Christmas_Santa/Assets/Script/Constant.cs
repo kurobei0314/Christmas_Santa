@@ -31,5 +31,11 @@ public static class PresentInfo{
         YELLOW,
         NONE
     }
-    public static Type PresentType;
+    
+}
+public static class EnemyInfo{
+    public enum Types{
+        BIRD,
+        STONE
+    }
 }

@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Script\AudioManager.cs" />
      <Compile Include="Assets\Script\Constant.cs" />
+     <Compile Include="Assets\Script\enemy.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
      <Compile Include="Assets\Script\item.cs" />
      <Compile Include="Assets\Script\present.cs" />

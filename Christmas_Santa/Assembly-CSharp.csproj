@@ -58,10 +58,13 @@
      <Compile Include="Assets\Script\GameController.cs" />
      <Compile Include="Assets\Script\item.cs" />
      <Compile Include="Assets\Script\present.cs" />
+     <Compile Include="Assets\Script\Property.cs" />
+     <Compile Include="Assets\Script\PropertyPresent.cs" />
      <Compile Include="Assets\Script\ResultController.cs" />
      <Compile Include="Assets\Script\santa.cs" />
      <Compile Include="Assets\Script\ScoreManager.cs" />
      <Compile Include="Assets\Script\TitleController.cs" />
+     <Compile Include="Assets\Script\wantperson.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/uchidamai/Unity/Christmas_Santa/Christmas_Santa/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
@@ -271,6 +274,9 @@
  </Reference>
  <Reference Include="UnityEngine.XRModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>/Users/uchidamai/Unity/Christmas_Santa/Christmas_Santa/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -623,6 +629,12 @@
  <Reference Include="mscorlib">
  <HintPath>/Applications/Unity/Unity.app/Contents/NetStandard/compat/2.0.0/shims/netfx/mscorlib.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{3203A199-4E9D-6665-80A4-D5E5ED86204D}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

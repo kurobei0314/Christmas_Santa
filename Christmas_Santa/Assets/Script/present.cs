@@ -41,13 +41,13 @@ public class present : MonoBehaviour
     void InitializeType(){
 
         switch(this.gameObject.tag){
-            case "red":
+            case "P_red":
                 currentPresentType = PresentInfo.Type.RED;
                 break;
-            case "yellow":
+            case "P_yellow":
                 currentPresentType = PresentInfo.Type.YELLOW;
                 break;
-            case "blue":
+            case "P_blue":
                 currentPresentType = PresentInfo.Type.BLUE;
                 break;
         }

@@ -75,14 +75,26 @@ public class santa : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D col){
 
-        if(col.gameObject.tag == "red"    ||
-           col.gameObject.tag == "yellow" ||
-           col.gameObject.tag == "blue"   ){
+        //プレゼントと触れた時の処理 
+        if(col.gameObject.tag == "P_red"    ||
+           col.gameObject.tag == "P_yellow" ||
+           col.gameObject.tag == "P_blue"   ){
             
             col.gameObject.SetActive(false);
             HavePresent.SetHavePresent(col.gameObject.GetComponent<present>().GetPresentType());
             //StartCoroutine ("PresentMoveAnimation");
         }
+
+        //欲しがってる人と触れた時の処理
+        if(col.gameObject.tag == "W_red"    ||
+           col.gameObject.tag == "W_yellow" ||
+           col.gameObject.tag == "W_blue"   ){
+
+            col.gameObject.SetActive(false);
+            HavePresent.FindHavePresent(col.gameObject.GetComponent<wantperson>().GetWantPresentType());
+        }
+
+
 
     }
     

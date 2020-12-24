@@ -28,7 +28,7 @@ public class santa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(currentPlayerState);
+        Debug.Log(currentPlayerState);
     }
 
     //プレイヤーの右下の座標を取得する

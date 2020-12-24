@@ -280,7 +280,7 @@ PrefabInstance:
     - target: {fileID: 7588730147025697879, guid: d11616f39bbd34285b8239181588c0f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 109.8
+      value: 124.2
       objectReference: {fileID: 0}
     - target: {fileID: 7588730147025697879, guid: d11616f39bbd34285b8239181588c0f1,
         type: 3}
@@ -472,7 +472,7 @@ PrefabInstance:
     - target: {fileID: 7098835819639669236, guid: e075b4ae1792d4ca8ab4da06a74e3bf4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 104.9
+      value: 119.299995
       objectReference: {fileID: 0}
     - target: {fileID: 7098835819639669236, guid: e075b4ae1792d4ca8ab4da06a74e3bf4,
         type: 3}
@@ -1381,6 +1381,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPlayerState: 0
   HavePresent: {fileID: 1225329944}
+  PlayerSprites:
+  - {fileID: 21300000, guid: 8e2cd86e092894da5ace2e4817ebd5b9, type: 3}
+  - {fileID: 21300000, guid: c09c776125b174dcab1b0338761a131e, type: 3}
 --- !u!61 &1484976074
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1967,7 +1970,7 @@ PrefabInstance:
     - target: {fileID: 8144770513192237758, guid: caa489132094b44b1b1cca800c6d76c1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 85.5
+      value: 93
       objectReference: {fileID: 0}
     - target: {fileID: 8144770513192237758, guid: caa489132094b44b1b1cca800c6d76c1,
         type: 3}
@@ -2022,7 +2025,7 @@ PrefabInstance:
     - target: {fileID: 8144770513192237758, guid: caa489132094b44b1b1cca800c6d76c1,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8144770513192237758, guid: caa489132094b44b1b1cca800c6d76c1,
         type: 3}

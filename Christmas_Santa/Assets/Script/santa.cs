@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System;
 
 public class santa : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class santa : MonoBehaviour
     }
     public PlayerState currentPlayerState;
     public Property HavePresent;
+    [SerializeField] private Sprite[] PlayerSprites;
+    int PlayerSpriteFlg = 1;
 
     // Start is called before the first frame update
     void Awake()
@@ -23,12 +27,17 @@ public class santa : MonoBehaviour
        width  = GetComponent<Renderer>().bounds.size.x;
        height = GetComponent<Renderer>().bounds.size.y; 
        SetCurrentPlayerState (PlayerState.NORMAL);
+
+       Observable.Interval(TimeSpan.FromSeconds(0.4f)).Subscribe(_ =>
+        {
+            ChangePlayerImage(); 
+        }).AddTo(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentPlayerState);
+        //Debug.Log(currentPlayerState);
     }
 
     //プレイヤーの右下の座標を取得する
@@ -52,6 +61,13 @@ public class santa : MonoBehaviour
         return speed;
     }
 
+    //　プレイヤーの画像を変える
+    void ChangePlayerImage(){
+
+        PlayerSpriteFlg = 1 - PlayerSpriteFlg;
+        this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
+    }
+
     // 衝突判定まわり
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -67,15 +83,12 @@ public class santa : MonoBehaviour
 
                 if(col.gameObject.GetComponent<chimney>().JudgePresentAccept()){
 
-                    Debug.Log("wa-i");
-                    //col.gameObject.SetActive(false);
                     HavePresent.FindHavePresent(col.gameObject.GetComponent<chimney>().GetPresentType());
                     col.gameObject.GetComponent<chimney>().WantPresentActive();
                 }
 
             }
     }
-    
     
     void OnCollisionExit2D(Collision2D col)
     {
@@ -113,7 +126,6 @@ public class santa : MonoBehaviour
         }
 
     }
-    
 
     // プレイヤーの状態を変える
     public void ChangeCurrentPlayerState () {

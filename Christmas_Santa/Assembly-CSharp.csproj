@@ -636,6 +636,10 @@
       <Project>{3203A199-4E9D-6665-80A4-D5E5ED86204D}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{1CF3C043-0703-EC9B-F1CA-E5A70EA5B0EC}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

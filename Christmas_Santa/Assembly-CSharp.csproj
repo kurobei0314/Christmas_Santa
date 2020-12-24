@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\AudioManager.cs" />
+     <Compile Include="Assets\Script\chimney.cs" />
      <Compile Include="Assets\Script\Constant.cs" />
      <Compile Include="Assets\Script\enemy.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
@@ -65,7 +66,6 @@
      <Compile Include="Assets\Script\santa.cs" />
      <Compile Include="Assets\Script\ScoreManager.cs" />
      <Compile Include="Assets\Script\TitleController.cs" />
-     <Compile Include="Assets\Script\wantperson.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/uchidamai/Unity/Christmas_Santa/Christmas_Santa/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

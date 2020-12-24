@@ -61,6 +61,19 @@ public class santa : MonoBehaviour
             {
                 SetCurrentPlayerState(PlayerState.NORMAL);
             }
+
+            //欲しがってる人と触れた時の処理
+            if(col.gameObject.tag == "chimney"){
+
+                if(col.gameObject.GetComponent<chimney>().JudgePresentAccept()){
+
+                    Debug.Log("wa-i");
+                    //col.gameObject.SetActive(false);
+                    HavePresent.FindHavePresent(col.gameObject.GetComponent<chimney>().GetPresentType());
+                    col.gameObject.GetComponent<chimney>().WantPresentActive();
+                }
+
+            }
     }
     
     
@@ -85,15 +98,6 @@ public class santa : MonoBehaviour
             //StartCoroutine ("PresentMoveAnimation");
         }
 
-        //欲しがってる人と触れた時の処理
-        if(col.gameObject.tag == "W_red"    ||
-           col.gameObject.tag == "W_yellow" ||
-           col.gameObject.tag == "W_blue"   ){
-
-            col.gameObject.SetActive(false);
-            HavePresent.FindHavePresent(col.gameObject.GetComponent<wantperson>().GetWantPresentType());
-        }
-
         //スピード変換アイテムと触れた時の処理
         if(col.gameObject.tag == "Item"){
 
@@ -107,6 +111,7 @@ public class santa : MonoBehaviour
             col.gameObject.SetActive(false);
             TouchEnemy(col.gameObject.GetComponent<enemy>().GetEnemyType());
         }
+
     }
     
 

@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - roof
+  - P_red
+  - P_yellow
+  - P_blue
+  - W_red
+  - W_yellow
+  - W_blue
+  - Item
+  - Enemy
   layers:
   - Default
   - TransparentFX

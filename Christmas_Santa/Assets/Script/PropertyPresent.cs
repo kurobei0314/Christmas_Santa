@@ -8,6 +8,8 @@ public class PropertyPresent : MonoBehaviour
     PresentInfo.Type currentPresentType;
     Image ImageColor;
 
+    [SerializeField] private Sprite[] PresentImageSprites;
+
     void Awake(){
 
         ImageColor = this.gameObject.GetComponent<Image>();
@@ -35,15 +37,18 @@ public class PropertyPresent : MonoBehaviour
                 break;
             case PresentInfo.Type.RED:
                 currentPresentType = PresentInfo.Type.RED;
-                ImageColor.color = new Color(1,0,0,1);
+                ImageColor.color = new Color(1,1,1,1);
+                ImageColor.sprite = PresentImageSprites[0];
                 break;
             case PresentInfo.Type.BLUE:
                 currentPresentType = PresentInfo.Type.BLUE;
-                ImageColor.color = new Color(0,0,1,1);
+                ImageColor.color = new Color(1,1,1,1);
+                ImageColor.sprite = PresentImageSprites[1];
                 break;
             case PresentInfo.Type.YELLOW:
                 currentPresentType = PresentInfo.Type.YELLOW;
-                ImageColor.color = new Color(0,1,0,1);
+                ImageColor.color = new Color(1,1,1,1);
+                ImageColor.sprite = PresentImageSprites[2];
                 break;
         }
 

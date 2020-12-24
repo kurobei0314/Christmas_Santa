@@ -6,7 +6,7 @@ public class enemy : MonoBehaviour
 {
 
     //Enemyの種類を管理する
-    EnemyInfo.Types EnemyType;
+    [SerializeField] EnemyInfo.Types EnemyType;
 
     // Start is called before the first frame update
     void Start()

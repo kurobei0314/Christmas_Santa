@@ -11,7 +11,7 @@ public class item : MonoBehaviour
         GREENTEA
     }
 
-    ItemTypes ItemType;
+    [SerializeField] ItemTypes ItemType;
 
     // Start is called before the first frame update
     void Start()

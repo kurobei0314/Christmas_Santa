@@ -73,10 +73,13 @@ public class santa : MonoBehaviour
     {
         //Debug.Log("Enter");
 
+            /*
             if (col.gameObject.tag == "roof")
             {
                 SetCurrentPlayerState(PlayerState.NORMAL);
+                Debug.Log("Enter");
             }
+            */
 
             //欲しがってる人と触れた時の処理
             if(col.gameObject.tag == "chimney"){
@@ -89,6 +92,16 @@ public class santa : MonoBehaviour
 
             }
     }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "roof"   ||
+            col.gameObject.tag == "chimney" )
+            {
+                SetCurrentPlayerState(PlayerState.NORMAL);
+                Debug.Log("Stay");
+            }
+    }
     
     void OnCollisionExit2D(Collision2D col)
     {
@@ -96,6 +109,7 @@ public class santa : MonoBehaviour
             if (col.gameObject.tag == "roof")
             {
                 SetCurrentPlayerState(PlayerState.JUMP);
+                Debug.Log("Exit");
             }
     }
     

@@ -12,7 +12,7 @@ public static class GameInfo{
     public static readonly float GRAVITY = -0.4f;   
 
     //プレイヤーの初期速度
-    public static readonly float INITIAL_SPEED = 0.1f;
+    public static readonly float INITIAL_SPEED = 0.2f;
     
     //プレイヤーの最大プレゼント所持数
     public static readonly int MAX_HAVEPRESENT = 3;

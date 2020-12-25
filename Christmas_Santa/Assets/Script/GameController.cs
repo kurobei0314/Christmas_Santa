@@ -111,7 +111,8 @@ public class GameController : MonoBehaviour
     //画面をクリックした時の処理
     void Click_touchpanel(){
 
-        if( player.GetComponent<santa>().GetEnemyAttack() == EnemyInfo.Types.NONE ){
+        if( player.GetComponent<santa>().GetEnemyAttack() == EnemyInfo.Types.NONE && 
+            currentGameState == GameState.MAIN){
 
             if(player.GetComponent<santa>().LandRoof()){
                 rigidbody = player.GetComponent<Rigidbody2D>();

@@ -40,7 +40,7 @@ public class santa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(currentPlayerState);
+        Debug.Log(currentPlayerState);
     }
 
     //プレイヤーの右下の座標を取得する
@@ -124,7 +124,12 @@ public class santa : MonoBehaviour
         if(col.gameObject.tag == "Item"){
 
             col.gameObject.SetActive(false);
-            ChangePlayerSpeed(col.gameObject.GetComponent<item>().ChangeSantaSpeedAmount());
+            if (col.gameObject.GetComponent<item>().JudgeNonena()){
+                StartCoroutine ("ChangeNonenaSpeed");
+            }
+            else{
+                ChangePlayerSpeed(col.gameObject.GetComponent<item>().ChangeSantaSpeedAmount());
+            }
         }
 
         //敵と触れた時の処理
@@ -134,6 +139,13 @@ public class santa : MonoBehaviour
             TouchEnemy(col.gameObject.GetComponent<enemy>().GetEnemyType());
         }
 
+    }
+
+    IEnumerator ChangeNonenaSpeed(){
+
+        speed = GameInfo.MAX_SPEED;
+        yield return new WaitForSeconds (5.0f);
+        speed = GameInfo.MIN_SPEED;
     }
 
     // プレイヤーの状態を変える
@@ -157,8 +169,6 @@ public class santa : MonoBehaviour
         EnemyAttack = state;
     }
 
-
-
     //playerが地面に着いているかどうか判定
     public bool LandRoof(){
         if(currentPlayerState == PlayerState.NORMAL){
@@ -178,6 +188,12 @@ public class santa : MonoBehaviour
 
         if( !(speed + ChangeSpeed < GameInfo.MIN_SPEED || speed + ChangeSpeed > GameInfo.MAX_SPEED) ){
             speed += ChangeSpeed;
+        }
+        else if (speed + ChangeSpeed < GameInfo.MIN_SPEED ){
+            speed = GameInfo.MIN_SPEED;
+        }
+        else if (speed + ChangeSpeed > GameInfo.MAX_SPEED){
+            speed = GameInfo.MAX_SPEED;
         }
     }
     

@@ -167,7 +167,10 @@ public class santa : MonoBehaviour
     }
 
     void ChangePlayerSpeed(float ChangeSpeed){
-        speed += ChangeSpeed;
+
+        if( !(speed + ChangeSpeed < GameInfo.MIN_SPEED || speed + ChangeSpeed > GameInfo.MAX_SPEED) ){
+            speed += ChangeSpeed;
+        }
     }
     
     void TouchEnemy(EnemyInfo.Types type){

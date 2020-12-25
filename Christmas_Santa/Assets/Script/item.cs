@@ -17,7 +17,6 @@ public class item : MonoBehaviour
     void Start()
     {
         InitializeType();
-        ItemType = ItemTypes.COLA;
     }
 
     // Update is called once per frame
@@ -52,6 +51,7 @@ public class item : MonoBehaviour
             case ItemTypes.COLA:
                 return GameInfo.COLA_SPEED;
             case ItemTypes.GREENTEA:
+                Debug.Log("GreenTEA");
                 return GameInfo.GREENTEA_SPEED;
         }  
         return 0.0f;      

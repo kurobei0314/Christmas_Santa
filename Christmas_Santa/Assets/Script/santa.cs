@@ -14,12 +14,14 @@ public class santa : MonoBehaviour
     public enum PlayerState{
         NORMAL,
         JUMP,
-        FALL
+        FALL,
     }
+
     public PlayerState currentPlayerState;
     public Property HavePresent;
     [SerializeField] private Sprite[] PlayerSprites;
     int PlayerSpriteFlg = 1;
+    EnemyInfo.Types EnemyAttack = EnemyInfo.Types.NONE;
 
     // Start is called before the first frame update
     void Awake()
@@ -71,16 +73,6 @@ public class santa : MonoBehaviour
     // 衝突判定まわり
     void OnCollisionEnter2D(Collision2D col)
     {
-        //Debug.Log("Enter");
-
-            /*
-            if (col.gameObject.tag == "roof")
-            {
-                SetCurrentPlayerState(PlayerState.NORMAL);
-                Debug.Log("Enter");
-            }
-            */
-
             //欲しがってる人と触れた時の処理
             if(col.gameObject.tag == "chimney"){
 
@@ -91,6 +83,8 @@ public class santa : MonoBehaviour
                 }
 
             }
+            //鳥によって落ちてるときに地面に触れたとき
+            if(EnemyAttack == EnemyInfo.Types.BIRD) SetEnemyAttack(EnemyInfo.Types.NONE);
     }
 
     void OnCollisionStay2D(Collision2D col)
@@ -150,10 +144,16 @@ public class santa : MonoBehaviour
         }
     }
 
-     // ゲームの状態をセットする
+    // ゲームの状態をセットする
     public void SetCurrentPlayerState (PlayerState state) {
         currentPlayerState = state;
     }
+
+    // ゲームの状態をセットする
+    public void SetEnemyAttack (EnemyInfo.Types state) {
+        EnemyAttack = state;
+    }
+
 
 
     //playerが地面に着いているかどうか判定
@@ -164,6 +164,11 @@ public class santa : MonoBehaviour
         else{
             return false;
         }
+    }
+
+    public EnemyInfo.Types GetEnemyAttack(){
+
+        return EnemyAttack;
     }
 
     void ChangePlayerSpeed(float ChangeSpeed){
@@ -178,12 +183,19 @@ public class santa : MonoBehaviour
         switch(type){
 
             case EnemyInfo.Types.BIRD:
-                Debug.Log("bird");
+                SetEnemyAttack(EnemyInfo.Types.BIRD);
+                // GameControllerにて移動を制御してる
                 break;
 
             case EnemyInfo.Types.CAT:
-                Debug.Log("Stone");
+                SetEnemyAttack(EnemyInfo.Types.CAT);
+                TouchCat();
                 break;
         }
+    }
+
+    void TouchCat(){
+        Debug.Log("wa-iwa-iwa-i");
+
     }
 }

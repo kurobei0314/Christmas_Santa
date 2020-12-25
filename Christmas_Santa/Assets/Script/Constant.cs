@@ -43,6 +43,7 @@ public static class PresentInfo{
 public static class EnemyInfo{
     public enum Types{
         BIRD,
-        CAT
+        CAT,
+        NONE
     }
 }

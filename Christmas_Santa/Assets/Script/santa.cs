@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System;
+using DG.Tweening;
 
 public class santa : MonoBehaviour
 {
@@ -66,8 +67,10 @@ public class santa : MonoBehaviour
     //　プレイヤーの画像を変える
     void ChangePlayerImage(){
 
-        PlayerSpriteFlg = 1 - PlayerSpriteFlg;
-        this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
+        if(EnemyAttack == EnemyInfo.Types.NONE){
+            PlayerSpriteFlg = 1 - PlayerSpriteFlg;
+            this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
+        }
     }
 
     // 衝突判定まわり
@@ -189,13 +192,25 @@ public class santa : MonoBehaviour
 
             case EnemyInfo.Types.CAT:
                 SetEnemyAttack(EnemyInfo.Types.CAT);
-                TouchCat();
+                StartCoroutine ("TouchCat");
                 break;
         }
     }
 
-    void TouchCat(){
-        Debug.Log("wa-iwa-iwa-i");
+    IEnumerator TouchCat(){
+        this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[2];
+
+        transform.DOLocalJump(
+            transform.position + new Vector3(2.0f,0.0f,0.0f),      // 移動終了地点
+            10,               // ジャンプする力
+            1,               // ジャンプする回数
+            1.0f              // アニメーション時間
+        );
+
+        yield return new WaitForSeconds (1.0f);
+
+        this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
+        SetEnemyAttack(EnemyInfo.Types.NONE);        
 
     }
 }

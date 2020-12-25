@@ -45,11 +45,30 @@ public class Property : MonoBehaviour
 
         for(int i=0; i < GameInfo.MAX_HAVEPRESENT; i++){
 
+            //所持できるプレゼントに空きがあったら
             if(HavePresent[i].GetPresentType() == PresentInfo.Type.NONE){
                 HavePresent[i].SetPresentType(type);
-                break;
+                return;
             }
         }
+    }
+
+    // 欲しい人にプレゼントを持って行ったときに欲しい色があるかどうか見つける処理
+    public void FindHavePresent(PresentInfo.Type type){
+
+        for(int i=0; i < GameInfo.MAX_HAVEPRESENT; i++){
+
+            //もしもみつけたら
+            if(HavePresent[i].GetPresentType() == type){
+                HavePresent[i].SetPresentType(PresentInfo.Type.NONE);
+                //スコアをプラスする
+                //音をつける
+                return;
+            }
+        }
+        //みつかんなかったらなにもしない
+        //音をつける
+
     }
 
 }

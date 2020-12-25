@@ -54,10 +54,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\AudioManager.cs" />
+     <Compile Include="Assets\Script\chimney.cs" />
      <Compile Include="Assets\Script\Constant.cs" />
+     <Compile Include="Assets\Script\enemy.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
      <Compile Include="Assets\Script\item.cs" />
      <Compile Include="Assets\Script\present.cs" />
+     <Compile Include="Assets\Script\Property.cs" />
+     <Compile Include="Assets\Script\PropertyPresent.cs" />
      <Compile Include="Assets\Script\ResultController.cs" />
      <Compile Include="Assets\Script\santa.cs" />
      <Compile Include="Assets\Script\ScoreManager.cs" />
@@ -271,6 +275,9 @@
  </Reference>
  <Reference Include="UnityEngine.XRModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>/Users/uchidamai/Unity/Christmas_Santa/Christmas_Santa/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -623,6 +630,16 @@
  <Reference Include="mscorlib">
  <HintPath>/Applications/Unity/Unity.app/Contents/NetStandard/compat/2.0.0/shims/netfx/mscorlib.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{3203A199-4E9D-6665-80A4-D5E5ED86204D}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{1CF3C043-0703-EC9B-F1CA-E5A70EA5B0EC}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

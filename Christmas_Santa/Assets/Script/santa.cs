@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System;
 
 public class santa : MonoBehaviour
 {
@@ -12,10 +14,14 @@ public class santa : MonoBehaviour
     public enum PlayerState{
         NORMAL,
         JUMP,
-        FALL
+        FALL,
     }
+
     public PlayerState currentPlayerState;
     public Property HavePresent;
+    [SerializeField] private Sprite[] PlayerSprites;
+    int PlayerSpriteFlg = 1;
+    EnemyInfo.Types EnemyAttack = EnemyInfo.Types.NONE;
 
     // Start is called before the first frame update
     void Awake()
@@ -23,6 +29,11 @@ public class santa : MonoBehaviour
        width  = GetComponent<Renderer>().bounds.size.x;
        height = GetComponent<Renderer>().bounds.size.y; 
        SetCurrentPlayerState (PlayerState.NORMAL);
+
+       Observable.Interval(TimeSpan.FromSeconds(0.4f)).Subscribe(_ =>
+        {
+            ChangePlayerImage(); 
+        }).AddTo(this.gameObject);
     }
 
     // Update is called once per frame
@@ -52,17 +63,38 @@ public class santa : MonoBehaviour
         return speed;
     }
 
+    //　プレイヤーの画像を変える
+    void ChangePlayerImage(){
+
+        PlayerSpriteFlg = 1 - PlayerSpriteFlg;
+        this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
+    }
+
     // 衝突判定まわり
     void OnCollisionEnter2D(Collision2D col)
     {
-        //Debug.Log("Enter");
+            //欲しがってる人と触れた時の処理
+            if(col.gameObject.tag == "chimney"){
 
-            if (col.gameObject.tag == "roof")
+                if(col.gameObject.GetComponent<chimney>().JudgePresentAccept()){
+
+                    HavePresent.FindHavePresent(col.gameObject.GetComponent<chimney>().GetPresentType());
+                    col.gameObject.GetComponent<chimney>().WantPresentActive();
+                }
+
+            }
+            //鳥によって落ちてるときに地面に触れたとき
+            if(EnemyAttack == EnemyInfo.Types.BIRD) SetEnemyAttack(EnemyInfo.Types.NONE);
+    }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "roof"   ||
+            col.gameObject.tag == "chimney" )
             {
                 SetCurrentPlayerState(PlayerState.NORMAL);
             }
     }
-    
     
     void OnCollisionExit2D(Collision2D col)
     {
@@ -75,17 +107,31 @@ public class santa : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D col){
 
-        if(col.gameObject.tag == "red"    ||
-           col.gameObject.tag == "yellow" ||
-           col.gameObject.tag == "blue"   ){
+        //プレゼントと触れた時の処理 
+        if(col.gameObject.tag == "P_red"    ||
+           col.gameObject.tag == "P_yellow" ||
+           col.gameObject.tag == "P_blue"   ){
             
             col.gameObject.SetActive(false);
             HavePresent.SetHavePresent(col.gameObject.GetComponent<present>().GetPresentType());
             //StartCoroutine ("PresentMoveAnimation");
         }
 
+        //スピード変換アイテムと触れた時の処理
+        if(col.gameObject.tag == "Item"){
+
+            col.gameObject.SetActive(false);
+            ChangePlayerSpeed(col.gameObject.GetComponent<item>().ChangeSantaSpeedAmount());
+        }
+
+        //敵と触れた時の処理
+        if(col.gameObject.tag == "Enemy"){
+
+            col.gameObject.SetActive(false);
+            TouchEnemy(col.gameObject.GetComponent<enemy>().GetEnemyType());
+        }
+
     }
-    
 
     // プレイヤーの状態を変える
     public void ChangeCurrentPlayerState () {
@@ -98,10 +144,16 @@ public class santa : MonoBehaviour
         }
     }
 
-     // ゲームの状態をセットする
+    // ゲームの状態をセットする
     public void SetCurrentPlayerState (PlayerState state) {
         currentPlayerState = state;
     }
+
+    // ゲームの状態をセットする
+    public void SetEnemyAttack (EnemyInfo.Types state) {
+        EnemyAttack = state;
+    }
+
 
 
     //playerが地面に着いているかどうか判定
@@ -113,5 +165,37 @@ public class santa : MonoBehaviour
             return false;
         }
     }
+
+    public EnemyInfo.Types GetEnemyAttack(){
+
+        return EnemyAttack;
+    }
+
+    void ChangePlayerSpeed(float ChangeSpeed){
+
+        if( !(speed + ChangeSpeed < GameInfo.MIN_SPEED || speed + ChangeSpeed > GameInfo.MAX_SPEED) ){
+            speed += ChangeSpeed;
+        }
+    }
     
+    void TouchEnemy(EnemyInfo.Types type){
+
+        switch(type){
+
+            case EnemyInfo.Types.BIRD:
+                SetEnemyAttack(EnemyInfo.Types.BIRD);
+                // GameControllerにて移動を制御してる
+                break;
+
+            case EnemyInfo.Types.CAT:
+                SetEnemyAttack(EnemyInfo.Types.CAT);
+                TouchCat();
+                break;
+        }
+    }
+
+    void TouchCat(){
+        Debug.Log("wa-iwa-iwa-i");
+
+    }
 }

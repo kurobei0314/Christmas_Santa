@@ -40,7 +40,6 @@ public class GameController : MonoBehaviour
         else if(currentGameState == GameState.MAIN){
             
             PlayerControll();
-
         }
 
         else if(currentGameState == GameState.GAMEOVER){
@@ -64,12 +63,25 @@ public class GameController : MonoBehaviour
     //　プレイヤーの移動
     public void PlayerControll(){
 
-        float PlayerSpeed = player.GetComponent<santa>().Get_PlayerSpeed();
-            
+        //Debug.Log(player.GetComponent<santa>().JudgeTouchEnemy());
+        EnemyInfo.Types AttackEnemyType = player.GetComponent<santa>().GetEnemyAttack();
         rigidbody = player.GetComponent<Rigidbody2D>();
-        rigidbody.MovePosition( player.transform.position + new Vector3(PlayerSpeed, GameInfo.GRAVITY,0.0f) );
 
-        //　プレイヤーが下にいるかどうかを確認する
+
+        //敵と触れているかどうか
+        if(     AttackEnemyType == EnemyInfo.Types.NONE){
+            float PlayerSpeed = player.GetComponent<santa>().Get_PlayerSpeed();
+            
+            rigidbody.MovePosition( player.transform.position + new Vector3(PlayerSpeed, GameInfo.GRAVITY,0.0f) );
+        }
+        else if(AttackEnemyType == EnemyInfo.Types.BIRD){
+            rigidbody.MovePosition( player.transform.position + new Vector3(0.0f, GameInfo.GRAVITY,0.0f) );
+        }
+        else if(AttackEnemyType == EnemyInfo.Types.CAT){
+            rigidbody.MovePosition( player.transform.position + new Vector3(0.0f, 0.0f,0.0f) );
+        }
+
+         //　プレイヤーが落ちているかどうかを確認する
         Vector3 PlayerUpLeftPosition = player.GetComponent<santa>().Get_UpLeftPosition();
         
         if(camera.transform.position.y - 7.5f > PlayerUpLeftPosition.y){
@@ -86,9 +98,12 @@ public class GameController : MonoBehaviour
     //画面をクリックした時の処理
     void Click_touchpanel(){
 
-        if(player.GetComponent<santa>().LandRoof()){
-            rigidbody = player.GetComponent<Rigidbody2D>();
-            rigidbody.AddForce(Vector2.up * GameInfo.PLAYER_JUMP);
+        if( player.GetComponent<santa>().GetEnemyAttack() == EnemyInfo.Types.NONE ){
+
+            if(player.GetComponent<santa>().LandRoof()){
+                rigidbody = player.GetComponent<Rigidbody2D>();
+                rigidbody.AddForce(Vector2.up * GameInfo.PLAYER_JUMP);
+            }
         }
     }
 

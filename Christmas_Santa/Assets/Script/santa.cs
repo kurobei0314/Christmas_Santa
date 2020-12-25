@@ -99,7 +99,6 @@ public class santa : MonoBehaviour
             col.gameObject.tag == "chimney" )
             {
                 SetCurrentPlayerState(PlayerState.NORMAL);
-                Debug.Log("Stay");
             }
     }
     
@@ -109,7 +108,6 @@ public class santa : MonoBehaviour
             if (col.gameObject.tag == "roof")
             {
                 SetCurrentPlayerState(PlayerState.JUMP);
-                Debug.Log("Exit");
             }
     }
     

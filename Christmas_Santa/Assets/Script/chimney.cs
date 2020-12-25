@@ -18,7 +18,10 @@ public class chimney : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.Log(currentChimneyPresentType);
         WantPresentImageSprite.SetActive(true);
+        InitializeType();
+
     }
 
     // Update is called once per frame
@@ -33,16 +36,17 @@ public class chimney : MonoBehaviour
 
         switch(currentChimneyPresentType){
             case PresentInfo.Type.RED:
-                ImagePass = "Pictures/HavePresent_R";
-               
+                ImagePass = "Image/HavePresent_R";
+                Debug.Log("RED");
                 break;
             case PresentInfo.Type.YELLOW:
-                ImagePass = "Pictures/HavePresent_Y";
+                ImagePass = "Image/HavePresent_Y";
                 break;
             case PresentInfo.Type.BLUE:
-                ImagePass = "Pictures/HavePresent_B";
+                ImagePass = "Image/HavePresent_B";
                 break;
         }
+        ChangeImage(ImagePass);
     }
 
     public bool JudgePresentAccept(){

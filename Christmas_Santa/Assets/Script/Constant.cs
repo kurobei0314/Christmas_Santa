@@ -6,7 +6,7 @@ using UnityEngine;
 public static class GameInfo{
 
     //プレイヤーのジャンプ力
-    public static readonly float PLAYER_JUMP = 2.5f;
+    public static readonly float PLAYER_JUMP = 2.7f;
 
     //プレイヤーの重力
     public static readonly float GRAVITY = -0.4f;   

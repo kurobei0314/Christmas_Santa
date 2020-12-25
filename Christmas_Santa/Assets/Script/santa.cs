@@ -181,7 +181,7 @@ public class santa : MonoBehaviour
                 Debug.Log("bird");
                 break;
 
-            case EnemyInfo.Types.STONE:
+            case EnemyInfo.Types.CAT:
                 Debug.Log("Stone");
                 break;
         }

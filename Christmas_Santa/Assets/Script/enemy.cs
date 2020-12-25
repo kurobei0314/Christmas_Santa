@@ -19,6 +19,9 @@ public class enemy : MonoBehaviour
     {
         
     }
+
+    
+
     public EnemyInfo.Types GetEnemyType(){
 
         return EnemyType;

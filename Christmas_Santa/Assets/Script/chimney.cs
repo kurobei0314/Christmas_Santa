@@ -37,7 +37,6 @@ public class chimney : MonoBehaviour
         switch(currentChimneyPresentType){
             case PresentInfo.Type.RED:
                 ImagePass = "Image/HavePresent_R";
-                Debug.Log("RED");
                 break;
             case PresentInfo.Type.YELLOW:
                 ImagePass = "Image/HavePresent_Y";

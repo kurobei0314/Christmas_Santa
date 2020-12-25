@@ -62,6 +62,7 @@ public class Property : MonoBehaviour
             if(HavePresent[i].GetPresentType() == type){
                 HavePresent[i].SetPresentType(PresentInfo.Type.NONE);
                 //スコアをプラスする
+                ScoreManager.instance.score += 100;
                 //音をつける
                 return;
             }

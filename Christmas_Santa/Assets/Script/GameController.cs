@@ -23,12 +23,22 @@ public class GameController : MonoBehaviour
 
     public GameState currentGameState;
 
+    //時間を表示するText型の変数
+    public Text timeText;
+    private float GameTimes = GameInfo.GAME_TIME;
+    //　残り時間3秒のflag
+    private int count3 = 3;
+
+    // 最初のポジションを保管しておく
+    private Vector3 InitialPosition;
+
     // Start is called before the first frame update
     void Start()
     {
         touchpanel.GetComponent<Button>().onClick.AddListener (Click_touchpanel);
         SetCurrentGameState(GameState.MAIN);
-
+        ScoreManager.instance.score = 0;
+        InitialPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -40,9 +50,12 @@ public class GameController : MonoBehaviour
         else if(currentGameState == GameState.MAIN){
             
             PlayerControll();
+            GameTimeCounter();
         }
 
         else if(currentGameState == GameState.GAMEOVER){
+
+            ScoreManager.instance.score += (int)(transform.position.x - InitialPosition.x);
 
         }
         
@@ -105,6 +118,31 @@ public class GameController : MonoBehaviour
                 rigidbody.AddForce(Vector2.up * GameInfo.PLAYER_JUMP);
             }
         }
+    }
+
+    void GameTimeCounter(){
+
+        //時間をカウントする
+        GameTimes = TimeCounter(GameTimes);
+
+        //時間を表示する
+        timeText.text = "残り"+((int)GameTimes).ToString() + "秒";
+
+        //3秒前の音
+        if( 0 < GameTimes && GameTimes < 4){
+            if ((int)GameTimes <= count3 && count3 < (int)GameTimes+1){
+                //AudioManager.Instance.PlaySE("count");
+                count3--;
+            }
+        }
+
+        if(GameTimes < 0) SetCurrentGameState(GameState.GAMEOVER);
+    }
+
+    float TimeCounter(float time){
+
+        time -= Time.deltaTime;
+        return time;
     }
 
 }

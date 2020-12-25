@@ -29,6 +29,8 @@ public static class GameInfo{
     //お茶による減少スピード
     public static readonly float GREENTEA_SPEED = -0.05f;
 
+    public static readonly int GAME_TIME = 30;
+
 }
 
 public static class PresentInfo{

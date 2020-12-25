@@ -51,10 +51,16 @@ public class item : MonoBehaviour
             case ItemTypes.COLA:
                 return GameInfo.COLA_SPEED;
             case ItemTypes.GREENTEA:
-                Debug.Log("GreenTEA");
                 return GameInfo.GREENTEA_SPEED;
         }  
         return 0.0f;      
-
     }
+
+    public bool JudgeNonena(){
+
+        if(ItemType == ItemTypes.NONENA) return true;
+
+        else return false;
+    }
+
 }

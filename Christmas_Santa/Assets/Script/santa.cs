@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System;
+using DG.Tweening;
 
 public class santa : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class santa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(currentPlayerState);
+        Debug.Log(currentPlayerState);
     }
 
     //プレイヤーの右下の座標を取得する
@@ -66,8 +67,10 @@ public class santa : MonoBehaviour
     //　プレイヤーの画像を変える
     void ChangePlayerImage(){
 
-        PlayerSpriteFlg = 1 - PlayerSpriteFlg;
-        this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
+        if(EnemyAttack == EnemyInfo.Types.NONE){
+            PlayerSpriteFlg = 1 - PlayerSpriteFlg;
+            this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
+        }
     }
 
     // 衝突判定まわり
@@ -121,7 +124,12 @@ public class santa : MonoBehaviour
         if(col.gameObject.tag == "Item"){
 
             col.gameObject.SetActive(false);
-            ChangePlayerSpeed(col.gameObject.GetComponent<item>().ChangeSantaSpeedAmount());
+            if (col.gameObject.GetComponent<item>().JudgeNonena()){
+                StartCoroutine ("ChangeNonenaSpeed");
+            }
+            else{
+                ChangePlayerSpeed(col.gameObject.GetComponent<item>().ChangeSantaSpeedAmount());
+            }
         }
 
         //敵と触れた時の処理
@@ -131,6 +139,13 @@ public class santa : MonoBehaviour
             TouchEnemy(col.gameObject.GetComponent<enemy>().GetEnemyType());
         }
 
+    }
+
+    IEnumerator ChangeNonenaSpeed(){
+
+        speed = GameInfo.MAX_SPEED;
+        yield return new WaitForSeconds (5.0f);
+        speed = GameInfo.MIN_SPEED;
     }
 
     // プレイヤーの状態を変える
@@ -154,8 +169,6 @@ public class santa : MonoBehaviour
         EnemyAttack = state;
     }
 
-
-
     //playerが地面に着いているかどうか判定
     public bool LandRoof(){
         if(currentPlayerState == PlayerState.NORMAL){
@@ -176,6 +189,12 @@ public class santa : MonoBehaviour
         if( !(speed + ChangeSpeed < GameInfo.MIN_SPEED || speed + ChangeSpeed > GameInfo.MAX_SPEED) ){
             speed += ChangeSpeed;
         }
+        else if (speed + ChangeSpeed < GameInfo.MIN_SPEED ){
+            speed = GameInfo.MIN_SPEED;
+        }
+        else if (speed + ChangeSpeed > GameInfo.MAX_SPEED){
+            speed = GameInfo.MAX_SPEED;
+        }
     }
     
     void TouchEnemy(EnemyInfo.Types type){
@@ -189,13 +208,25 @@ public class santa : MonoBehaviour
 
             case EnemyInfo.Types.CAT:
                 SetEnemyAttack(EnemyInfo.Types.CAT);
-                TouchCat();
+                StartCoroutine ("TouchCat");
                 break;
         }
     }
 
-    void TouchCat(){
-        Debug.Log("wa-iwa-iwa-i");
+    IEnumerator TouchCat(){
+        this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[2];
+
+        transform.DOLocalJump(
+            transform.position + new Vector3(2.0f,0.0f,0.0f),      // 移動終了地点
+            10,               // ジャンプする力
+            1,               // ジャンプする回数
+            1.0f              // アニメーション時間
+        );
+
+        yield return new WaitForSeconds (1.0f);
+
+        this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
+        SetEnemyAttack(EnemyInfo.Types.NONE);        
 
     }
 }

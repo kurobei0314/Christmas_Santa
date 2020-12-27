@@ -140,7 +140,7 @@ public class santa : MonoBehaviour
         if(col.gameObject.tag == "Enemy"){
 
             col.gameObject.SetActive(false);
-            AudioManager.Instance.PlaySE("Damage");
+            AudioManager.Instance.PlaySE("Hit06-1");
             TouchEnemy(col.gameObject.GetComponent<enemy>().GetEnemyType());
         }
 

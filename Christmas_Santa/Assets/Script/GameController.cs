@@ -149,8 +149,8 @@ public class GameController : MonoBehaviour
         //3秒前の音
         if( 0 < GameTimes && GameTimes < 4){
             if ((int)GameTimes <= count3 && count3 < (int)GameTimes+1){
-                //AudioManager.Instance.PlaySE("count");
                 count3--;
+                AudioManager.Instance.PlaySE("Count");
             }
         }
 

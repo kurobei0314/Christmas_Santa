@@ -48,7 +48,7 @@ public class TitleController : MonoBehaviour
     }
 
     void StartClick(){
-        SceneManager.LoadScene("Main");
+        FadeManager.Instance.LoadScene ("Main", 1.0f);
     }
 
     void TutolialClick(){
@@ -81,7 +81,6 @@ public class TitleController : MonoBehaviour
         );
 
         yield return new WaitForSeconds (1.0f);
-
         button.SetActive(true);
     }
 

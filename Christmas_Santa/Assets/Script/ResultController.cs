@@ -76,8 +76,7 @@ public class ResultController : MonoBehaviour
     }
 
     public void TitleClick(){
-
-        Debug.Log("title");
+        FadeManager.Instance.LoadScene ("Title", 1.0f);
     }
 
     public void RankingClick(){

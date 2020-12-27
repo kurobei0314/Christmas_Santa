@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameController : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         touchpanel.GetComponent<Button>().onClick.AddListener (Click_touchpanel);
-        SetCurrentGameState(GameState.MAIN);
+        SetCurrentGameState(GameState.COUNTDOWN);
         ScoreManager.instance.score = 0;
         ScoreManager.instance.GetPresent = 0;
         InitialPosition = player.transform.position;
@@ -47,7 +48,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         if     (currentGameState == GameState.COUNTDOWN){
-
+            StartCoroutine ("MainAnimation");
         }
         else if(currentGameState == GameState.MAIN){
             
@@ -57,8 +58,11 @@ public class GameController : MonoBehaviour
 
         else if(currentGameState == GameState.GAMEOVER){
 
+            Debug.Log(player.transform.position.x);
+            Debug.Log(InitialPosition.x);
+
             ScoreManager.instance.score += (int)(player.transform.position.x - InitialPosition.x);
-            SceneManager.LoadScene("Result");
+            FadeManager.Instance.LoadScene ("Result", 1.0f);
 
         }
         
@@ -149,6 +153,12 @@ public class GameController : MonoBehaviour
 
         time -= Time.deltaTime;
         return time;
+    }
+
+    private IEnumerator MainAnimation() {
+
+        yield return new WaitForSeconds (1.0f);
+        SetCurrentGameState(GameState.MAIN);
     }
 
 }

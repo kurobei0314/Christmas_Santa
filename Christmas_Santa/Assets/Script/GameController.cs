@@ -34,6 +34,9 @@ public class GameController : MonoBehaviour
     // 最初のポジションを保管しておく
     private Vector3 InitialPosition;
 
+    // 1回だけスコアを加算する
+    bool ScoreFlg=true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,10 +61,11 @@ public class GameController : MonoBehaviour
 
         else if(currentGameState == GameState.GAMEOVER){
 
-            Debug.Log(player.transform.position.x);
-            Debug.Log(InitialPosition.x);
+            if(ScoreFlg){
+                ScoreManager.instance.score += (int)(player.transform.position.x - InitialPosition.x);
+                ScoreFlg = false;
+            }
 
-            ScoreManager.instance.score += (int)(player.transform.position.x - InitialPosition.x);
             FadeManager.Instance.LoadScene ("Result", 1.0f);
 
         }

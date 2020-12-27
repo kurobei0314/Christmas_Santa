@@ -60,7 +60,7 @@ public class ResultController : MonoBehaviour
 
     private IEnumerator ResultAnimation() {
         
-        yield return new WaitForSeconds (0.5f);
+        yield return new WaitForSeconds (1.5f);
 
         Sprite sprite = Resources.Load<Sprite>("Image/OpenPresent_R");
         Present_R.GetComponent<Image>().sprite = sprite;

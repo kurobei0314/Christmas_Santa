@@ -14,12 +14,24 @@ public class TitleController : MonoBehaviour
     public GameObject EndPosition;
     public GameObject Text;
 
+    public GameObject MainTutolial;
+    public GameObject[] Tutolial;
+    public GameObject Batsu;
+    public GameObject RightArrow, LeftArrow;
+
+    int TutorialIndex;
+
+
     // Start is called before the first frame update
     void Start()
     {
         InitializeActive();
         StartCoroutine ("TitleAnimation");
         InitializeButton();
+
+        RightArrow.GetComponent<Button>().onClick.AddListener (RightArrow_Touch);
+        LeftArrow.GetComponent<Button>().onClick.AddListener (LeftArrow_Touch);
+        Batsu.GetComponent<Button>().onClick.AddListener (Batsu_Touch);
     }
 
     // Update is called once per frame
@@ -36,6 +48,15 @@ public class TitleController : MonoBehaviour
         Text Text2 = Text.transform.Find("Text2").gameObject.GetComponent<Text>();
         Text1.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         Text2.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+
+        TutorialIndex = 0;
+
+        MainTutolial.SetActive(false);
+        Tutolial[0].SetActive(true);
+
+        for(int i = 1; i < 4 ; i++){
+            Tutolial[i].SetActive(false);
+        }
     }
 
 
@@ -52,7 +73,7 @@ public class TitleController : MonoBehaviour
     }
 
     void TutolialClick(){
-        Debug.Log("tutorial");
+        MainTutolial.SetActive(true);
     }
 
     private IEnumerator TitleAnimation() {
@@ -84,6 +105,39 @@ public class TitleController : MonoBehaviour
 
         yield return new WaitForSeconds (1.0f);
         button.SetActive(true);
+    }
+
+    void RightArrow_Touch(){
+
+        Tutolial[TutorialIndex].SetActive(false);
+
+        if(TutorialIndex == 3) {
+            TutorialIndex = 0;
+        }
+        else{
+            TutorialIndex += 1;
+        }
+
+        Tutolial[TutorialIndex].SetActive(true);
+    }
+
+    void LeftArrow_Touch(){
+
+        Tutolial[TutorialIndex].SetActive(false);
+
+        if(TutorialIndex == 0) {
+            TutorialIndex = 3;
+        }
+        else{
+            TutorialIndex -= 1;
+        }
+
+        Tutolial[TutorialIndex].SetActive(true);
+    }
+
+    void Batsu_Touch(){
+
+        MainTutolial.SetActive(false);
     }
 
 }

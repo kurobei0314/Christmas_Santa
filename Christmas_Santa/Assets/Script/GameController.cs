@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] GameObject[] PropertyPresent;   
 
-    //プレイヤーの状態を管理する
+    //ゲームの状態を管理する
     public enum GameState{
         COUNTDOWN,
         MAIN,
@@ -56,10 +56,6 @@ public class GameController : MonoBehaviour
         }
 
         else if(currentGameState == GameState.GAMEOVER){
-
-            Debug.Log(player.transform.position.x);
-            Debug.Log(InitialPosition.x);
-            Debug.Log((int)(player.transform.position.x - InitialPosition.x));
 
             ScoreManager.instance.score += (int)(player.transform.position.x - InitialPosition.x);
             SceneManager.LoadScene("Result");
@@ -102,11 +98,13 @@ public class GameController : MonoBehaviour
         }
 
          //　プレイヤーが落ちているかどうかを確認する
+        /*
         Vector3 PlayerUpLeftPosition = player.GetComponent<santa>().Get_UpLeftPosition();
         
         if(camera.transform.position.y - 7.5f > PlayerUpLeftPosition.y){
             // SetCurrentGameState(GameState.GAMEOVER);
         }
+        */
     }
     
 

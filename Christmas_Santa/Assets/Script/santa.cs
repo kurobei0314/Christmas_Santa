@@ -24,6 +24,8 @@ public class santa : MonoBehaviour
     int PlayerSpriteFlg = 1;
     EnemyInfo.Types EnemyAttack = EnemyInfo.Types.NONE;
 
+    public GameController Controller;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -138,6 +140,14 @@ public class santa : MonoBehaviour
 
             col.gameObject.SetActive(false);
             TouchEnemy(col.gameObject.GetComponent<enemy>().GetEnemyType());
+        }
+
+        //落ちた時
+        if(col.gameObject.tag == "underCollider"){
+
+            //落ちた時のSE
+            Controller.SetCurrentGameState(GameController.GameState.GAMEOVER);
+
         }
 
     }

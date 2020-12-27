@@ -32,6 +32,8 @@ public class TitleController : MonoBehaviour
         RightArrow.GetComponent<Button>().onClick.AddListener (RightArrow_Touch);
         LeftArrow.GetComponent<Button>().onClick.AddListener (LeftArrow_Touch);
         Batsu.GetComponent<Button>().onClick.AddListener (Batsu_Touch);
+
+        AudioManager.Instance.PlayBGM("Title");
     }
 
     // Update is called once per frame
@@ -69,11 +71,14 @@ public class TitleController : MonoBehaviour
     }
 
     void StartClick(){
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlaySE("Button");
         FadeManager.Instance.LoadScene ("Main", 1.0f);
     }
 
     void TutolialClick(){
         MainTutolial.SetActive(true);
+        AudioManager.Instance.PlaySE("Button");
     }
 
     private IEnumerator TitleAnimation() {
@@ -108,7 +113,8 @@ public class TitleController : MonoBehaviour
     }
 
     void RightArrow_Touch(){
-
+        
+        AudioManager.Instance.PlaySE("Button");
         Tutolial[TutorialIndex].SetActive(false);
 
         if(TutorialIndex == 3) {
@@ -123,6 +129,7 @@ public class TitleController : MonoBehaviour
 
     void LeftArrow_Touch(){
 
+        AudioManager.Instance.PlaySE("Button");
         Tutolial[TutorialIndex].SetActive(false);
 
         if(TutorialIndex == 0) {
@@ -136,7 +143,7 @@ public class TitleController : MonoBehaviour
     }
 
     void Batsu_Touch(){
-
+        AudioManager.Instance.PlaySE("Button");
         MainTutolial.SetActive(false);
     }
 

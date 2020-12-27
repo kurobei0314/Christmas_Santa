@@ -45,6 +45,8 @@ public class GameController : MonoBehaviour
         ScoreManager.instance.score = 0;
         ScoreManager.instance.GetPresent = 0;
         InitialPosition = player.transform.position;
+
+        AudioManager.Instance.PlayBGM("Main");
     }
 
     // Update is called once per frame
@@ -65,7 +67,7 @@ public class GameController : MonoBehaviour
                 ScoreManager.instance.score += (int)(player.transform.position.x - InitialPosition.x);
                 ScoreFlg = false;
             }
-
+            AudioManager.Instance.StopBGM();
             FadeManager.Instance.LoadScene ("Result", 1.0f);
 
         }
@@ -130,6 +132,8 @@ public class GameController : MonoBehaviour
             if(player.GetComponent<santa>().LandRoof()){
                 rigidbody = player.GetComponent<Rigidbody2D>();
                 rigidbody.AddForce(Vector2.up * GameInfo.PLAYER_JUMP);
+
+                AudioManager.Instance.PlaySE("Jump");
             }
         }
     }

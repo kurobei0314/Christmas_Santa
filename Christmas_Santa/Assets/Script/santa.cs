@@ -120,6 +120,7 @@ public class santa : MonoBehaviour
             
             col.gameObject.SetActive(false);
             HavePresent.SetHavePresent(col.gameObject.GetComponent<present>().GetPresentType());
+            AudioManager.Instance.PlaySE("GetPresent");
             //StartCoroutine ("PresentMoveAnimation");
         }
 
@@ -139,18 +140,20 @@ public class santa : MonoBehaviour
         if(col.gameObject.tag == "Enemy"){
 
             col.gameObject.SetActive(false);
+            AudioManager.Instance.PlaySE("Damage");
             TouchEnemy(col.gameObject.GetComponent<enemy>().GetEnemyType());
         }
 
         //落ちた時
         if(col.gameObject.tag == "underCollider"){
 
+            AudioManager.Instance.PlaySE("Fall");
             //落ちた時のSE
             Controller.SetCurrentGameState(GameController.GameState.GAMEOVER);
 
         }
 
-        //コースを乾燥した時
+        //コースを完走した時
         if(col.gameObject.tag == "Goal"){
 
             //落ちた時のSE
@@ -163,6 +166,7 @@ public class santa : MonoBehaviour
 
         speed = GameInfo.MAX_SPEED;
         yield return new WaitForSeconds (GameInfo.NonenaTime);
+        AudioManager.Instance.PlaySE("PowerDown");
         speed = GameInfo.MIN_SPEED;
     }
 

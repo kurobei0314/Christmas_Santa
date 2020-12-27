@@ -14,10 +14,12 @@ public class ResultController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.Instance.PlayBGM("Result");
         InitializeActive();
         InitializeText();
         StartCoroutine ("ResultAnimation");  
         InitializeButton();
+
     }
 
     // Update is called once per frame
@@ -72,14 +74,16 @@ public class ResultController : MonoBehaviour
 
         text.SetActive(true);
         button.SetActive(true);
-
     }
 
     public void TitleClick(){
+        AudioManager.Instance.PlaySE("Button");
+        AudioManager.Instance.StopBGM();
         FadeManager.Instance.LoadScene ("Title", 1.0f);
     }
 
     public void RankingClick(){
+        AudioManager.Instance.PlaySE("Button");
         Debug.Log("ranking");
         naichilab.RankingLoader.Instance.SendScoreAndShowRanking (ScoreManager.instance.score);
     }

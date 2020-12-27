@@ -65,13 +65,14 @@ public class Property : MonoBehaviour
                 ScoreManager.instance.score += 100;
                 ScoreManager.instance.GetPresent += 1;
                 //音をつける
+                AudioManager.Instance.PlaySE("SuccessPresent");
                 return;
             }
         }
         //みつかんなかったらなにもしない
 
         //音をつける
-
+        AudioManager.Instance.PlaySE("FailPresent");
     }
 
 }

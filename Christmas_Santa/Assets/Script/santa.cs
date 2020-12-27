@@ -157,8 +157,6 @@ public class santa : MonoBehaviour
             Controller.SetCurrentGameState(GameController.GameState.GAMEOVER);
 
         }
-
-
     }
 
     IEnumerator ChangeNonenaSpeed(){

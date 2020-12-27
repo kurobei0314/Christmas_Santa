@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - chimney
   - underCollider
+  - Goal
   layers:
   - Default
   - TransparentFX

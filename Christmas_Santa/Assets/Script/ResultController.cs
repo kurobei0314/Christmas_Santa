@@ -18,7 +18,6 @@ public class ResultController : MonoBehaviour
         InitializeText();
         StartCoroutine ("ResultAnimation");  
         InitializeButton();
-        
     }
 
     // Update is called once per frame
@@ -83,5 +82,6 @@ public class ResultController : MonoBehaviour
 
     public void RankingClick(){
         Debug.Log("ranking");
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking (ScoreManager.instance.score);
     }
 }

@@ -21,3 +21,6 @@ Unity1 weekゲームジャムのためのゲーム
 参考URL
 https://nekopro99.com/move-rigidbody-addforce/
 https://qiita.com/yuki2006/items/a60fc92e033dddcb3a83
+
+ランキング実装にお世話になりました。
+https://blog.naichilab.com/entry/webgl-simple-ranking

@@ -63,13 +63,16 @@ public class Property : MonoBehaviour
                 HavePresent[i].SetPresentType(PresentInfo.Type.NONE);
                 //スコアをプラスする
                 ScoreManager.instance.score += 100;
+                ScoreManager.instance.GetPresent += 1;
                 //音をつける
+                AudioManager.Instance.PlaySE("SuccessPresent");
                 return;
             }
         }
         //みつかんなかったらなにもしない
-        //音をつける
 
+        //音をつける
+        AudioManager.Instance.PlaySE("FailPresent");
     }
 
 }

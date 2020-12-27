@@ -5,7 +5,8 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
-    public float score;
+    public int score=0;
+    public int GetPresent=0;
     private void Awake () {
         if (instance == null) {
             instance = this;

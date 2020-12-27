@@ -47,10 +47,13 @@ public class item : MonoBehaviour
 
         switch(ItemType){
             case ItemTypes.NONENA:
+                AudioManager.Instance.PlaySE("PowerUp");
                 return GameInfo.COLA_SPEED;
             case ItemTypes.COLA:
+                AudioManager.Instance.PlaySE("PowerUp");
                 return GameInfo.COLA_SPEED;
             case ItemTypes.GREENTEA:
+                AudioManager.Instance.PlaySE("PowerDown");
                 return GameInfo.GREENTEA_SPEED;
         }  
         return 0.0f;      

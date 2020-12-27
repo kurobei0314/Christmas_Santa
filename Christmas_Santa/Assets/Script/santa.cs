@@ -24,6 +24,8 @@ public class santa : MonoBehaviour
     int PlayerSpriteFlg = 1;
     EnemyInfo.Types EnemyAttack = EnemyInfo.Types.NONE;
 
+    public GameController Controller;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -40,7 +42,7 @@ public class santa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentPlayerState);
+        //Debug.Log(currentPlayerState);
     }
 
     //プレイヤーの右下の座標を取得する
@@ -79,6 +81,7 @@ public class santa : MonoBehaviour
             //欲しがってる人と触れた時の処理
             if(col.gameObject.tag == "chimney"){
 
+                //煙突に１度も入っていなかった時
                 if(col.gameObject.GetComponent<chimney>().JudgePresentAccept()){
 
                     HavePresent.FindHavePresent(col.gameObject.GetComponent<chimney>().GetPresentType());
@@ -117,6 +120,7 @@ public class santa : MonoBehaviour
             
             col.gameObject.SetActive(false);
             HavePresent.SetHavePresent(col.gameObject.GetComponent<present>().GetPresentType());
+            AudioManager.Instance.PlaySE("GetPresent");
             //StartCoroutine ("PresentMoveAnimation");
         }
 
@@ -136,15 +140,33 @@ public class santa : MonoBehaviour
         if(col.gameObject.tag == "Enemy"){
 
             col.gameObject.SetActive(false);
+            AudioManager.Instance.PlaySE("Hit06-1");
             TouchEnemy(col.gameObject.GetComponent<enemy>().GetEnemyType());
         }
 
+        //落ちた時
+        if(col.gameObject.tag == "underCollider"){
+
+            AudioManager.Instance.PlaySE("Fall");
+            //落ちた時のSE
+            Controller.SetCurrentGameState(GameController.GameState.GAMEOVER);
+
+        }
+
+        //コースを完走した時
+        if(col.gameObject.tag == "Goal"){
+
+            //落ちた時のSE
+            Controller.SetCurrentGameState(GameController.GameState.GAMEOVER);
+
+        }
     }
 
     IEnumerator ChangeNonenaSpeed(){
 
         speed = GameInfo.MAX_SPEED;
-        yield return new WaitForSeconds (5.0f);
+        yield return new WaitForSeconds (GameInfo.NonenaTime);
+        AudioManager.Instance.PlaySE("PowerDown");
         speed = GameInfo.MIN_SPEED;
     }
 

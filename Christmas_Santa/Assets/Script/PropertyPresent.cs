@@ -33,7 +33,8 @@ public class PropertyPresent : MonoBehaviour
 
             case PresentInfo.Type.NONE:
                 currentPresentType = PresentInfo.Type.NONE;
-                ImageColor.color = new Color(0,0,0,1);
+                ImageColor.sprite = null;
+                ImageColor.color = Color.gray;
                 break;
             case PresentInfo.Type.RED:
                 currentPresentType = PresentInfo.Type.RED;

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameController : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] GameObject[] PropertyPresent;   
 
-    //プレイヤーの状態を管理する
+    //ゲームの状態を管理する
     public enum GameState{
         COUNTDOWN,
         MAIN,
@@ -32,20 +34,26 @@ public class GameController : MonoBehaviour
     // 最初のポジションを保管しておく
     private Vector3 InitialPosition;
 
+    // 1回だけスコアを加算する
+    bool ScoreFlg=true;
+
     // Start is called before the first frame update
     void Start()
     {
         touchpanel.GetComponent<Button>().onClick.AddListener (Click_touchpanel);
-        SetCurrentGameState(GameState.MAIN);
+        SetCurrentGameState(GameState.COUNTDOWN);
         ScoreManager.instance.score = 0;
-        InitialPosition = transform.position;
+        ScoreManager.instance.GetPresent = 0;
+        InitialPosition = player.transform.position;
+
+        AudioManager.Instance.PlayBGM("Main");
     }
 
     // Update is called once per frame
     void Update()
     {
         if     (currentGameState == GameState.COUNTDOWN){
-
+            StartCoroutine ("MainAnimation");
         }
         else if(currentGameState == GameState.MAIN){
             
@@ -55,7 +63,12 @@ public class GameController : MonoBehaviour
 
         else if(currentGameState == GameState.GAMEOVER){
 
-            ScoreManager.instance.score += (int)(transform.position.x - InitialPosition.x);
+            if(ScoreFlg){
+                ScoreManager.instance.score += (int)(player.transform.position.x - InitialPosition.x);
+                ScoreFlg = false;
+            }
+            AudioManager.Instance.StopBGM();
+            FadeManager.Instance.LoadScene ("Result", 1.0f);
 
         }
         
@@ -95,11 +108,13 @@ public class GameController : MonoBehaviour
         }
 
          //　プレイヤーが落ちているかどうかを確認する
+        /*
         Vector3 PlayerUpLeftPosition = player.GetComponent<santa>().Get_UpLeftPosition();
         
         if(camera.transform.position.y - 7.5f > PlayerUpLeftPosition.y){
             // SetCurrentGameState(GameState.GAMEOVER);
         }
+        */
     }
     
 
@@ -117,6 +132,8 @@ public class GameController : MonoBehaviour
             if(player.GetComponent<santa>().LandRoof()){
                 rigidbody = player.GetComponent<Rigidbody2D>();
                 rigidbody.AddForce(Vector2.up * GameInfo.PLAYER_JUMP);
+
+                AudioManager.Instance.PlaySE("Jump");
             }
         }
     }
@@ -127,13 +144,13 @@ public class GameController : MonoBehaviour
         GameTimes = TimeCounter(GameTimes);
 
         //時間を表示する
-        timeText.text = "残り"+((int)GameTimes).ToString() + "秒";
+        timeText.text = ((int)GameTimes).ToString();
 
         //3秒前の音
         if( 0 < GameTimes && GameTimes < 4){
             if ((int)GameTimes <= count3 && count3 < (int)GameTimes+1){
-                //AudioManager.Instance.PlaySE("count");
                 count3--;
+                AudioManager.Instance.PlaySE("Count");
             }
         }
 
@@ -144,6 +161,12 @@ public class GameController : MonoBehaviour
 
         time -= Time.deltaTime;
         return time;
+    }
+
+    private IEnumerator MainAnimation() {
+
+        yield return new WaitForSeconds (1.0f);
+        SetCurrentGameState(GameState.MAIN);
     }
 
 }

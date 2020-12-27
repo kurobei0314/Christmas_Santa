@@ -15,10 +15,10 @@ public static class GameInfo{
     public static readonly float INITIAL_SPEED = 0.15f;
 
     //プレイヤーの最小速度
-    public static readonly float MIN_SPEED = 0.05f;
+    public static readonly float MIN_SPEED = 0.1f;
 
     //プレイヤーの最大速度
-    public static readonly float MAX_SPEED = 0.4f;
+    public static readonly float MAX_SPEED = 0.3f;
     
     //プレイヤーの最大プレゼント所持数
     public static readonly int MAX_HAVEPRESENT = 2;
@@ -29,7 +29,10 @@ public static class GameInfo{
     //お茶による減少スピード
     public static readonly float GREENTEA_SPEED = -0.05f;
 
-    public static readonly int GAME_TIME = 30;
+    //ゲームのプレイ時間
+    public static readonly int GAME_TIME = 70;
+
+    public static readonly float NonenaTime = 8.0f;
 
 }
 

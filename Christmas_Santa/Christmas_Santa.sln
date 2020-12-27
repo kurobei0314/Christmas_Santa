@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniRx", "UniRx.csproj", "{1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniRx.Examples", "UniRx.Examples.csproj", "{42E69CAC-E20D-4ABC-944B-50C6F14C80B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{0845BE8E-8AA9-2047-354B-A712DD0F57DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{42E69CAC-E20D-4ABC-944B-50C6F14C80B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E69CAC-E20D-4ABC-944B-50C6F14C80B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E69CAC-E20D-4ABC-944B-50C6F14C80B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0845BE8E-8AA9-2047-354B-A712DD0F57DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0845BE8E-8AA9-2047-354B-A712DD0F57DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0845BE8E-8AA9-2047-354B-A712DD0F57DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0845BE8E-8AA9-2047-354B-A712DD0F57DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

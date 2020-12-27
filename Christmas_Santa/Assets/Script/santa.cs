@@ -150,6 +150,15 @@ public class santa : MonoBehaviour
 
         }
 
+        //コースを乾燥した時
+        if(col.gameObject.tag == "Goal"){
+
+            //落ちた時のSE
+            Controller.SetCurrentGameState(GameController.GameState.GAMEOVER);
+
+        }
+
+
     }
 
     IEnumerator ChangeNonenaSpeed(){

@@ -624,7 +624,7 @@ MonoBehaviour:
   camera: {fileID: 1588501755}
   PropertyPresent: []
   currentGameState: 1
-  timeText: {fileID: 0}
+  timeText: {fileID: 1225889852}
 --- !u!4 &93960789
 Transform:
   m_ObjectHideFlags: 0

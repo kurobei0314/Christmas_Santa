@@ -39,8 +39,8 @@ public class GameController : MonoBehaviour
         touchpanel.GetComponent<Button>().onClick.AddListener (Click_touchpanel);
         SetCurrentGameState(GameState.MAIN);
         ScoreManager.instance.score = 0;
-         ScoreManager.instance.GetPresent = 0;
-        InitialPosition = transform.position;
+        ScoreManager.instance.GetPresent = 0;
+        InitialPosition = player.transform.position;
     }
 
     // Update is called once per frame
@@ -57,7 +57,11 @@ public class GameController : MonoBehaviour
 
         else if(currentGameState == GameState.GAMEOVER){
 
-            ScoreManager.instance.score += (int)(transform.position.x - InitialPosition.x);
+            Debug.Log(player.transform.position.x);
+            Debug.Log(InitialPosition.x);
+            Debug.Log((int)(player.transform.position.x - InitialPosition.x));
+
+            ScoreManager.instance.score += (int)(player.transform.position.x - InitialPosition.x);
             SceneManager.LoadScene("Result");
 
         }

@@ -40,7 +40,7 @@ public class santa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentPlayerState);
+        //Debug.Log(currentPlayerState);
     }
 
     //プレイヤーの右下の座標を取得する
@@ -79,12 +79,11 @@ public class santa : MonoBehaviour
             //欲しがってる人と触れた時の処理
             if(col.gameObject.tag == "chimney"){
 
+                //煙突に１度も入っていなかった時
                 if(col.gameObject.GetComponent<chimney>().JudgePresentAccept()){
 
                     HavePresent.FindHavePresent(col.gameObject.GetComponent<chimney>().GetPresentType());
                     col.gameObject.GetComponent<chimney>().WantPresentActive();
-                    ScoreManager.instance.score += 100;
-                    ScoreManager.instance.GetPresent += 1;
                 }
 
             }

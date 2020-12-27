@@ -57,6 +57,8 @@ public class TitleController : MonoBehaviour
 
     private IEnumerator TitleAnimation() {
 
+        yield return new WaitForSeconds (1.0f);
+
         Santa.transform.DOMove (
             EndPosition.transform.position,　　//移動後の座標
             1.0f 　　　　　　    //時間

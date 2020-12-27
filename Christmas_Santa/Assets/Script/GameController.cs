@@ -140,7 +140,7 @@ public class GameController : MonoBehaviour
         GameTimes = TimeCounter(GameTimes);
 
         //時間を表示する
-        timeText.text = "残り"+((int)GameTimes).ToString() + "秒";
+        timeText.text = ((int)GameTimes).ToString();
 
         //3秒前の音
         if( 0 < GameTimes && GameTimes < 4){

@@ -66,6 +66,7 @@
      <Compile Include="Assets\Script\santa.cs" />
      <Compile Include="Assets\Script\ScoreManager.cs" />
      <Compile Include="Assets\Script\TitleController.cs" />
+     <None Include="Assets\Resources\font\KTEGAKI120\readme.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/uchidamai/Unity/Christmas_Santa/Christmas_Santa/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

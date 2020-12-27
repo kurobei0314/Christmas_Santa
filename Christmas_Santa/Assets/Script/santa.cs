@@ -83,6 +83,8 @@ public class santa : MonoBehaviour
 
                     HavePresent.FindHavePresent(col.gameObject.GetComponent<chimney>().GetPresentType());
                     col.gameObject.GetComponent<chimney>().WantPresentActive();
+                    ScoreManager.instance.score += 100;
+                    ScoreManager.instance.GetPresent += 1;
                 }
 
             }

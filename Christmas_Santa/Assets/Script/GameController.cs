@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class GameController : MonoBehaviour
         touchpanel.GetComponent<Button>().onClick.AddListener (Click_touchpanel);
         SetCurrentGameState(GameState.MAIN);
         ScoreManager.instance.score = 0;
+         ScoreManager.instance.GetPresent = 0;
         InitialPosition = transform.position;
     }
 
@@ -56,6 +58,7 @@ public class GameController : MonoBehaviour
         else if(currentGameState == GameState.GAMEOVER){
 
             ScoreManager.instance.score += (int)(transform.position.x - InitialPosition.x);
+            SceneManager.LoadScene("Result");
 
         }
         

@@ -91,7 +91,9 @@ public class santa : MonoBehaviour
             }
             //鳥によって落ちてるときに地面に触れたとき
             if(EnemyAttack == EnemyInfo.Types.BIRD) SetEnemyAttack(EnemyInfo.Types.NONE);
+
     }
+    
 
     void OnCollisionStay2D(Collision2D col)
     {

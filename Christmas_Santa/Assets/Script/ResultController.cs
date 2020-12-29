@@ -41,9 +41,11 @@ public class ResultController : MonoBehaviour
     void InitializeButton(){
         GameObject TitleButton = button.transform.Find("title").gameObject;
         GameObject RankingButton= button.transform.Find("ranking").gameObject;
+        GameObject TweetButton= button.transform.Find("tweet").gameObject;
         
         TitleButton.GetComponent<Button>().onClick.AddListener (TitleClick);
         RankingButton.GetComponent<Button>().onClick.AddListener (RankingClick);
+        TweetButton.GetComponent<Button>().onClick.AddListener (TweetClick);
     }
 
     void InitializeText(){
@@ -84,7 +86,17 @@ public class ResultController : MonoBehaviour
 
     public void RankingClick(){
         AudioManager.Instance.PlaySE("Button");
-        Debug.Log("ranking");
         naichilab.RankingLoader.Instance.SendScoreAndShowRanking (ScoreManager.instance.score);
     }
+
+    public void TweetClick(){
+
+        string text = "届けたプレゼントは"+ScoreManager.instance.GetPresent+"個、合計点は"+ScoreManager.instance.score+"てんとったよ！"; 
+
+        naichilab.UnityRoomTweet.Tweet ("christmas_santa_run", text, "unityroom", "unity1week");
+
+    }
+
+
+    
 }

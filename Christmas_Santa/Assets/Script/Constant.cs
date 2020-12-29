@@ -30,7 +30,7 @@ public static class GameInfo{
     public static readonly float GREENTEA_SPEED = -0.05f;
 
     //ゲームのプレイ時間
-    public static readonly int GAME_TIME = 10;
+    public static readonly int GAME_TIME = 70;
 
     public static readonly float NonenaTime = 8.0f;
 

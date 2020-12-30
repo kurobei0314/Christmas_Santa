@@ -40,10 +40,12 @@ public class ResultController : MonoBehaviour
 
     void InitializeButton(){
         GameObject TitleButton = button.transform.Find("title").gameObject;
+        GameObject MainButton= button.transform.Find("main").gameObject;
         GameObject RankingButton= button.transform.Find("ranking").gameObject;
         GameObject TweetButton= button.transform.Find("tweet").gameObject;
         
         TitleButton.GetComponent<Button>().onClick.AddListener (TitleClick);
+        MainButton.GetComponent<Button>().onClick.AddListener (MainClick);
         RankingButton.GetComponent<Button>().onClick.AddListener (RankingClick);
         TweetButton.GetComponent<Button>().onClick.AddListener (TweetClick);
     }
@@ -64,13 +66,13 @@ public class ResultController : MonoBehaviour
 
     private IEnumerator ResultAnimation() {
         
-        yield return new WaitForSeconds (1.5f);
+        yield return new WaitForSeconds (1.3f);
 
         Sprite sprite = Resources.Load<Sprite>("Image/OpenPresent_R");
         Present_R.GetComponent<Image>().sprite = sprite;
         
         for (int i = 0 ; i < 3; i++){
-            yield return new WaitForSeconds (1.0f);
+            yield return new WaitForSeconds (0.3f);
             mokumoku[i].SetActive(true);
         }
 
@@ -91,10 +93,16 @@ public class ResultController : MonoBehaviour
 
     public void TweetClick(){
 
+        AudioManager.Instance.PlaySE("Button");
         string text = "届けたプレゼントは"+ScoreManager.instance.GetPresent+"個、合計点は"+ScoreManager.instance.score+"てんとったよ！"; 
-
         naichilab.UnityRoomTweet.Tweet ("christmas_santa_run", text, "unityroom", "unity1week");
 
+    }
+
+    public void MainClick(){
+
+        AudioManager.Instance.PlaySE("Button");
+        FadeManager.Instance.LoadScene ("Main", 1.0f);
     }
 
 

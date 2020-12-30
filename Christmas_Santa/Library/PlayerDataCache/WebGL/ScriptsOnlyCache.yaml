@@ -20,6 +20,7 @@ ScriptsOnlyBuild:
     - chimney
     - enemy
     - item
+    - naichilab.Scripts.Internal.GyazoSetting
     - present
     - santa
     DOTweenUpgradeManager.dll:
@@ -32,6 +33,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TileDragAndDropManager
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -273,6 +275,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12116}
     - Class: 114
       Script: {instanceID: 12190}
+    - Class: 114
+      Script: {instanceID: 68756}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1158,10 +1162,28 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: naichilab
     className: RankingLoader
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: naichilab.Scripts.Internal
+    className: CoroutineHandler
+  - hash:
+      serializedVersion: 2
+      Hash: d1f19a449bc0d4ad790e9abab14ea797
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: naichilab.Scripts.Internal
+    className: GyazoSetting
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: naichilab
+    className: TweetSample
   platform: 20
   scenePathNames:
   - Assets/Scenes/Title.unity
   - Assets/Scenes/Main.unity
   - Assets/Scenes/Result.unity
   - Assets/Plugins/naichilab/unity-simple-ranking/Scenes/Ranking.unity
-  playerPath: /Users/uchidamai/Unity/Christmas_Santa_v1.0
+  playerPath: /Users/uchidamai/Unity/Christmas_Santa_v1.1

@@ -1186,4 +1186,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Main.unity
   - Assets/Scenes/Result.unity
   - Assets/Plugins/naichilab/unity-simple-ranking/Scenes/Ranking.unity
-  playerPath: /Users/uchidamai/Unity/Christmas_Santa_v1.2
+  playerPath: /Users/uchidamai/Unity/Christmas_Santa_v1.3

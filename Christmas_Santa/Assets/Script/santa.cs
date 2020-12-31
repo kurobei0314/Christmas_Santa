@@ -35,7 +35,7 @@ public class santa : MonoBehaviour
 
        Observable.Interval(TimeSpan.FromSeconds(0.4f)).Subscribe(_ =>
         {
-            ChangePlayerImage(); 
+            ChangePlayerImage();    
         }).AddTo(this.gameObject);
     }
 
@@ -69,7 +69,7 @@ public class santa : MonoBehaviour
     //　プレイヤーの画像を変える
     void ChangePlayerImage(){
 
-        if(EnemyAttack == EnemyInfo.Types.NONE){
+        if(EnemyAttack == EnemyInfo.Types.NONE  && currentPlayerState == PlayerState.NORMAL){
             PlayerSpriteFlg = 1 - PlayerSpriteFlg;
             this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
         }
@@ -227,6 +227,7 @@ public class santa : MonoBehaviour
 
             case EnemyInfo.Types.BIRD:
                 SetEnemyAttack(EnemyInfo.Types.BIRD);
+                this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[2];
                 // GameControllerにて移動を制御してる
                 break;
 

@@ -62,6 +62,7 @@ public class chimney : MonoBehaviour
 
     public void WantPresentActive(){
         WantPresentImageSprite.SetActive(false);
+        currentChimneyState = ChimneyState.GET;
     }
 
     public PresentInfo.Type GetPresentType(){

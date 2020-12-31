@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "Christmas_Santa",
+"productVersion": "0.1",
+"dataUrl": "Christmas_Santa_v1.4.data.unityweb",
+"wasmCodeUrl": "Christmas_Santa_v1.4.wasm.code.unityweb",
+"wasmFrameworkUrl": "Christmas_Santa_v1.4.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.2.3f1"
+}

@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class santa : MonoBehaviour
 {
-    //　プレイヤーの横幅、縦幅
+    // プレイヤーの横幅、縦幅
     float width, height;
     float speed=GameInfo.INITIAL_SPEED;
 
@@ -61,12 +61,12 @@ public class santa : MonoBehaviour
         return UpLeftPosition; 
     }
 
-    //　プレイヤーのスピードを取得する
+    // プレイヤーのスピードを取得する
     public float Get_PlayerSpeed(){
         return speed;
     }
 
-    //　プレイヤーの画像を変える
+    // プレイヤーの画像を変える
     void ChangePlayerImage(){
 
         if(EnemyAttack == EnemyInfo.Types.NONE  && currentPlayerState == PlayerState.NORMAL){

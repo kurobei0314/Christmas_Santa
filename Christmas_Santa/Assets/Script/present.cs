@@ -64,8 +64,8 @@ public class present : MonoBehaviour
         RectTransform PresentTrans = movepresent.GetComponent<RectTransform>();
         
         PresentTrans.DOMove (
-            moveposition.transform.position + new Vector3(1.0f*),　　//終了時点のScale
-            1.0f 　　　　　　                         //時間
+            moveposition.transform.position + new Vector3(1.0f*),   //終了時点のScale
+            1.0f                                                    //時間
         );
 
         yield return new WaitForSeconds (1.0f);

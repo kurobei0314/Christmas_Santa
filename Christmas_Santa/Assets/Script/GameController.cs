@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
     //時間を表示するText型の変数
     public Text timeText;
     private float GameTimes = GameInfo.GAME_TIME;
-    //　残り時間3秒のflag
+    // 残り時間3秒のflag
     private int count3 = 3;
 
     // 最初のポジションを保管しておく
@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour
         
     }
 
-    //　プレイヤーの移動
+    // プレイヤーの移動
     public void PlayerControll(){
 
         //Debug.Log(player.GetComponent<santa>().JudgeTouchEnemy());
@@ -107,7 +107,7 @@ public class GameController : MonoBehaviour
             rigidbody.MovePosition( player.transform.position + new Vector3(0.0f, 0.0f,0.0f) );
         }
 
-         //　プレイヤーが落ちているかどうかを確認する
+         // プレイヤーが落ちているかどうかを確認する
         /*
         Vector3 PlayerUpLeftPosition = player.GetComponent<santa>().Get_UpLeftPosition();
         

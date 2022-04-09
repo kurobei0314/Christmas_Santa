@@ -103,8 +103,5 @@ public class ResultController : MonoBehaviour
 
         AudioManager.Instance.PlaySE("Button");
         FadeManager.Instance.LoadScene ("Main", 1.0f);
-    }
-
-
-    
+    }    
 }

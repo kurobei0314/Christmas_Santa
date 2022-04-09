@@ -93,7 +93,6 @@ public class GameController : MonoBehaviour
         EnemyInfo.Types AttackEnemyType = player.GetComponent<santa>().GetEnemyAttack();
         rigidbody = player.GetComponent<Rigidbody2D>();
 
-
         //敵と触れているかどうか
         if(     AttackEnemyType == EnemyInfo.Types.NONE){
             float PlayerSpeed = player.GetComponent<santa>().Get_PlayerSpeed();

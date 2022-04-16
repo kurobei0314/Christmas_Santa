@@ -20,7 +20,8 @@ public class santa : MonoBehaviour
 
     public PlayerState currentPlayerState;
     public Property HavePresent;
-    [SerializeField] private Sprite[] PlayerSprites;
+    // [SerializeField] private Sprite[] PlayerSprites;
+    [SerializeField] private GameObject[] SantaImage; 
     int PlayerSpriteFlg = 1;
     EnemyInfo.Types EnemyAttack = EnemyInfo.Types.NONE;
 
@@ -71,7 +72,7 @@ public class santa : MonoBehaviour
 
         if(EnemyAttack == EnemyInfo.Types.NONE  && currentPlayerState == PlayerState.NORMAL){
             PlayerSpriteFlg = 1 - PlayerSpriteFlg;
-            this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
+            SwitchSantaImage(PlayerSpriteFlg);
         }
     }
 
@@ -227,7 +228,7 @@ public class santa : MonoBehaviour
 
             case EnemyInfo.Types.BIRD:
                 SetEnemyAttack(EnemyInfo.Types.BIRD);
-                this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[2];
+                SwitchSantaImage(2);
                 // GameControllerにて移動を制御してる
                 break;
 
@@ -239,7 +240,7 @@ public class santa : MonoBehaviour
     }
 
     IEnumerator TouchCat(){
-        this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[2];
+        SwitchSantaImage(2);
 
         transform.DOLocalJump(
             transform.position + new Vector3(2.0f,0.0f,0.0f),      // 移動終了地点
@@ -250,8 +251,17 @@ public class santa : MonoBehaviour
 
         yield return new WaitForSeconds (1.0f);
 
-        this.GetComponent<SpriteRenderer>().sprite = PlayerSprites[PlayerSpriteFlg];
+        SwitchSantaImage(PlayerSpriteFlg);
         SetEnemyAttack(EnemyInfo.Types.NONE);        
 
+    }
+
+    // サンタの画像を切り替える。引数に表示したいサンタの画像のナンバーを入れる
+    void SwitchSantaImage(int num){
+
+        for(int i=0; i<3;i++){
+            SantaImage[i].SetActive (false);
+        }
+        SantaImage[num].SetActive(true);
     }
 }
